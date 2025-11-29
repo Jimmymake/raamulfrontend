@@ -1,0 +1,65 @@
+// ==========================================
+// LOADING SPINNER STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.spinner {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-lg;
+
+  &--small {
+    .spinner__circle {
+      width: 24px;
+      height: 24px;
+      border-width: 2px;
+    }
+  }
+
+  &--medium {
+    .spinner__circle {
+      width: 40px;
+      height: 40px;
+      border-width: 3px;
+    }
+  }
+
+  &--large {
+    .spinner__circle {
+      width: 56px;
+      height: 56px;
+      border-width: 4px;
+    }
+  }
+
+  &__circle {
+    border: 3px solid rgba($accent-primary, 0.2);
+    border-top-color: $accent-primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  &__text {
+    color: $text-muted;
+    font-size: $font-size-base;
+  }
+}
+
+.spinner-fullscreen {
+  position: fixed;
+  inset: 0;
+  background: $bg-primary;
+  @include flex-center;
+  z-index: $z-modal;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

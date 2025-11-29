@@ -1,0 +1,348 @@
+// ==========================================
+// NAVBAR STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed;
+  padding: $spacing-md 0;
+  background: rgba($bg-primary, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid $border-color;
+  transition: all $transition-slow;
+
+  &--transparent {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+  }
+
+  &__container {
+    @include container;
+    @include flex-between;
+  }
+
+  // Logo
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    text-decoration: none;
+  }
+
+  &__logo-img {
+    height: 45px;
+    width: auto;
+  }
+
+  &__logo-text {
+    @include flex-column;
+  }
+
+  &__logo-name {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    line-height: 1.1;
+  }
+
+  &__logo-sub {
+    font-size: 9px;
+    color: $accent-light;
+    letter-spacing: 2px;
+  }
+
+  // Navigation Links
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3xl;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: $text-secondary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    transition: color $transition-normal;
+    position: relative;
+
+    &:hover {
+      color: $text-primary;
+    }
+
+    &--active {
+      color: $accent-primary;
+    }
+
+    &--cart {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+    }
+  }
+
+  &__cart-badge {
+    background: $accent-primary;
+    color: $text-primary;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    padding: 2px 8px;
+    border-radius: $radius-full;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  // Right Section
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+  }
+
+  // User Menu
+  &__user {
+    position: relative;
+  }
+
+  &__user-btn {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-sm $spacing-md;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid $border-color-light;
+    border-radius: $radius-lg;
+    color: $text-primary;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    background: $accent-gradient;
+    border-radius: 50%;
+    @include flex-center;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-base;
+  }
+
+  &__username {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__chevron {
+    transition: transform $transition-normal;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  // Dropdown Menu
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 220px;
+    background: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+    animation: dropdownFadeIn 0.2s ease;
+  }
+
+  @keyframes dropdownFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__dropdown-header {
+    padding: $spacing-lg;
+    background: rgba(255, 255, 255, 0.03);
+    @include flex-column;
+    gap: 2px;
+  }
+
+  &__dropdown-name {
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+  }
+
+  &__dropdown-email {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  &__dropdown-role {
+    font-size: $font-size-xs;
+    color: $accent-primary;
+    text-transform: capitalize;
+    margin-top: $spacing-xs;
+  }
+
+  &__dropdown-divider {
+    height: 1px;
+    background: $border-color;
+  }
+
+  &__dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    width: 100%;
+    padding: $spacing-md $spacing-lg;
+    background: none;
+    border: none;
+    color: $text-secondary;
+    font-size: $font-size-base;
+    font-family: $font-family;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    svg {
+      opacity: 0.6;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: $text-primary;
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    &--logout {
+      color: $error;
+
+      &:hover {
+        background: $error-bg;
+        color: $error;
+      }
+    }
+  }
+
+  // Auth Buttons
+  &__auth {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__btn {
+    padding: $spacing-md $spacing-xl;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    transition: all $transition-normal;
+
+    &--outline {
+      background: transparent;
+      border: 1px solid rgba($accent-primary, 0.5);
+      color: $accent-primary;
+
+      &:hover {
+        background: rgba($accent-primary, 0.1);
+      }
+    }
+
+    &--primary {
+      @include button-primary;
+      padding: $spacing-md $spacing-xl;
+    }
+  }
+
+  // Mobile Toggle
+  &__mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: $text-primary;
+      border-radius: 2px;
+      transition: all $transition-normal;
+    }
+
+    @include mobile {
+      display: flex;
+    }
+  }
+
+  // Mobile Menu
+  &__mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: $bg-secondary;
+    border-bottom: 1px solid $border-color;
+    padding: $spacing-lg $container-padding;
+    @include flex-column;
+    gap: $spacing-sm;
+
+    @include mobile {
+      display: flex;
+    }
+  }
+
+  &__mobile-link {
+    display: block;
+    padding: $spacing-md;
+    color: $text-secondary;
+    font-size: $font-size-lg;
+    text-decoration: none;
+    border-radius: $radius-md;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: $text-primary;
+    }
+  }
+}
+

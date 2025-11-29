@@ -1,0 +1,269 @@
+// ==========================================
+// PAYMENT HISTORY PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.payment-history {
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__main {
+    padding-top: $navbar-height + 20px;
+  }
+
+  &__container {
+    @include container;
+    padding-top: $spacing-4xl;
+    padding-bottom: $spacing-4xl;
+  }
+
+  // Header
+  &__header {
+    margin-bottom: $spacing-3xl;
+
+    h1 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  // Summary
+  &__summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-xl;
+    margin-bottom: $spacing-3xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__summary-item {
+    @include card;
+    padding: $spacing-2xl;
+    text-align: center;
+  }
+
+  &__summary-label {
+    display: block;
+    font-size: $font-size-sm;
+    color: $text-muted;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__summary-value {
+    font-size: 28px;
+    font-weight: $font-weight-bold;
+
+    &--success {
+      color: $success;
+    }
+
+    &--amount {
+      color: $accent-primary;
+    }
+  }
+
+  // Filters
+  &__filters {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+    flex-wrap: wrap;
+  }
+
+  &__filter {
+    padding: $spacing-md $spacing-xl;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &--active {
+      background: $accent-gradient;
+      border-color: transparent;
+      color: $text-primary;
+    }
+  }
+
+  // Loading & Empty
+  &__loading {
+    padding: 80px 0;
+    @include flex-center;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 80px $spacing-xl;
+    @include card;
+  }
+
+  &__empty-icon {
+    font-size: 64px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__empty h2 {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__empty p {
+    color: $text-muted;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__btn {
+    @include button-primary;
+    text-decoration: none;
+  }
+
+  // List
+  &__list {
+    @include flex-column;
+    gap: $spacing-lg;
+  }
+
+  &__card {
+    @include card;
+    overflow: hidden;
+    transition: border-color $transition-normal;
+
+    &:hover {
+      border-color: $border-color-hover;
+    }
+  }
+
+  &__card-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    padding: $spacing-xl;
+    background: rgba(0, 0, 0, 0.02);
+
+    @include mobile {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-xl;
+    @include flex-center;
+    font-size: $font-size-xl;
+    flex-shrink: 0;
+  }
+
+  &__card-info {
+    flex: 1;
+    @include flex-column;
+    gap: 2px;
+  }
+
+  &__card-method {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__card-date {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  &__card-amount {
+    text-align: right;
+    @include flex-column;
+    align-items: flex-end;
+    gap: $spacing-sm;
+
+    @include mobile {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: $spacing-md;
+    }
+  }
+
+  &__amount {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+  }
+
+  &__status {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__card-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-lg;
+    padding: $spacing-xl;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+  }
+
+  &__detail {
+    @include flex-column;
+    gap: $spacing-xs;
+  }
+
+  &__detail-label {
+    font-size: $font-size-xs;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__detail-value {
+    font-size: $font-size-base;
+
+    &--link {
+      color: $accent-primary;
+      text-decoration: none;
+
+      &:hover {
+        color: $accent-light;
+      }
+    }
+  }
+
+  // Pagination
+  &__pagination {
+    @include flex-center;
+    gap: $spacing-xl;
+    margin-top: $spacing-3xl;
+  }
+
+  &__page-btn {
+    @include button-outline;
+    padding: $spacing-md $spacing-xl;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__page-info {
+    color: $text-secondary;
+  }
+}
+

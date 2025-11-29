@@ -1,0 +1,145 @@
+// ==========================================
+// ACCESS DENIED PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.access-denied {
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__main {
+    min-height: 100vh;
+    @include flex-center;
+    padding: $spacing-2xl;
+    position: relative;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  // Background Effects
+  &__bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+
+    &--1 {
+      width: 500px;
+      height: 500px;
+      background: $error;
+      top: -200px;
+      left: -100px;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 400px;
+      height: 400px;
+      background: $warning;
+      bottom: -150px;
+      right: -100px;
+      animation: float 12s ease-in-out infinite reverse;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+  }
+
+  // Content
+  &__content {
+    @include card;
+    padding: $spacing-4xl;
+    position: relative;
+  }
+
+  &__icon {
+    font-size: 80px;
+    margin-bottom: $spacing-2xl;
+    animation: shake 0.5s ease-in-out;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-lg;
+    color: $error;
+  }
+
+  &__message {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    line-height: 1.7;
+    margin-bottom: $spacing-3xl;
+  }
+
+  // Actions
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__btn {
+    padding: $spacing-lg $spacing-2xl;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    transition: all $transition-normal;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+
+    &--primary {
+      @include button-primary;
+    }
+
+    &--outline {
+      @include button-outline;
+    }
+  }
+
+  // Help
+  &__help {
+    padding-top: $spacing-xl;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+
+    p {
+      font-size: $font-size-sm;
+      color: $text-muted;
+    }
+
+    a {
+      color: $accent-primary;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+

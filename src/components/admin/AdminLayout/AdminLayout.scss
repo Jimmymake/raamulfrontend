@@ -1,0 +1,392 @@
+// ==========================================
+// ADMIN LAYOUT STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+$sidebar-width: 260px;
+$sidebar-collapsed-width: 70px;
+$topbar-height: 70px;
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: $bg-primary;
+
+  // Mobile Overlay
+  &__overlay {
+    display: none;
+  }
+
+  // Sidebar
+  &__sidebar {
+    width: $sidebar-width;
+    background: $bg-secondary;
+    border-right: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: $z-fixed;
+    transition: all $transition-slow;
+  }
+
+  &--collapsed &__sidebar {
+    width: $sidebar-collapsed-width;
+  }
+
+  &__sidebar-header {
+    padding: $spacing-xl;
+    border-bottom: 1px solid $border-color;
+    @include flex-between;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    text-decoration: none;
+
+    img {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__logo-text {
+    @include flex-column;
+    
+    span:first-child {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      line-height: 1;
+    }
+
+    span:last-child {
+      font-size: 9px;
+      color: $accent-primary;
+      letter-spacing: 2px;
+    }
+  }
+
+  &__toggle {
+    background: none;
+    border: none;
+    color: $text-muted;
+    cursor: pointer;
+    padding: $spacing-sm;
+    border-radius: $radius-md;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: $text-primary;
+    }
+  }
+
+  // Navigation
+  &__nav {
+    flex: 1;
+    padding: $spacing-xl $spacing-md;
+    @include flex-column;
+    gap: $spacing-sm;
+    overflow-y: auto;
+  }
+
+  &__nav-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    color: $text-secondary;
+    text-decoration: none;
+    border-radius: $radius-lg;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    svg {
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: $text-primary;
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    &--active {
+      background: rgba($accent-primary, 0.1);
+      color: $accent-primary;
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    &--logout {
+      color: $error;
+
+      &:hover {
+        background: rgba($error, 0.1);
+      }
+    }
+  }
+
+  &--collapsed &__nav-item {
+    justify-content: center;
+    padding: $spacing-md;
+
+    span {
+      display: none;
+    }
+  }
+
+  &__sidebar-footer {
+    padding: $spacing-xl $spacing-md;
+    border-top: 1px solid $border-color;
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  // Main Content
+  &__main {
+    flex: 1;
+    margin-left: $sidebar-width;
+    transition: margin-left $transition-slow;
+  }
+
+  &--collapsed &__main {
+    margin-left: $sidebar-collapsed-width;
+  }
+
+  // Top Bar
+  &__topbar {
+    height: $topbar-height;
+    background: rgba($bg-secondary, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid $border-color;
+    padding: 0 $spacing-3xl;
+    @include flex-between;
+    position: sticky;
+    top: 0;
+    z-index: $z-sticky;
+  }
+
+  // Mobile Toggle (hidden on desktop)
+  &__mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $text-primary;
+    cursor: pointer;
+    padding: $spacing-sm;
+    margin-right: $spacing-md;
+    border-radius: $radius-md;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+    }
+  }
+
+  &__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: $text-muted;
+    font-size: $font-size-sm;
+    text-transform: capitalize;
+
+    span:last-child {
+      color: $text-primary;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__user-info {
+    @include flex-column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  &__user-name {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $text-primary;
+  }
+
+  &__user-role {
+    font-size: $font-size-xs;
+    color: $accent-primary;
+    text-transform: capitalize;
+  }
+
+  &__user-avatar {
+    width: 40px;
+    height: 40px;
+    background: $accent-gradient;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+  }
+
+  // Content
+  &__content {
+    padding: $spacing-3xl;
+    min-height: calc(100vh - $topbar-height);
+  }
+}
+
+// ==========================================
+// TABLET RESPONSIVE
+// ==========================================
+@include tablet {
+  .admin-layout {
+    &__sidebar {
+      width: $sidebar-collapsed-width;
+    }
+
+    &__logo-text {
+      display: none;
+    }
+
+    &__nav-item span {
+      display: none;
+    }
+
+    &__nav-item {
+      justify-content: center;
+      padding: $spacing-md;
+    }
+
+    &__main {
+      margin-left: $sidebar-collapsed-width;
+    }
+
+    &__topbar {
+      padding: 0 $spacing-xl;
+    }
+
+    &__content {
+      padding: $spacing-xl;
+    }
+
+    &__user-info {
+      display: none;
+    }
+  }
+}
+
+// ==========================================
+// MOBILE RESPONSIVE
+// ==========================================
+@include mobile {
+  .admin-layout {
+    // Overlay
+    &__overlay {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: $z-modal-backdrop;
+      opacity: 0;
+      animation: fadeIn 0.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    // Sidebar - Hidden by default on mobile
+    &__sidebar {
+      width: $sidebar-width;
+      transform: translateX(-100%);
+      z-index: $z-modal;
+    }
+
+    // Show sidebar when mobile menu is open
+    &--mobile-open &__sidebar {
+      transform: translateX(0);
+    }
+
+    &__logo-text {
+      display: flex;
+    }
+
+    &__nav-item span {
+      display: inline;
+    }
+
+    &__nav-item {
+      justify-content: flex-start;
+      padding: $spacing-md $spacing-lg;
+    }
+
+    // Main content - full width on mobile
+    &__main {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    // Top bar
+    &__topbar {
+      padding: 0 $spacing-md;
+      gap: $spacing-sm;
+    }
+
+    // Show mobile toggle button
+    &__mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__breadcrumb {
+      flex: 1;
+      font-size: $font-size-xs;
+    }
+
+    &__user {
+      gap: $spacing-sm;
+    }
+
+    &__user-info {
+      display: none;
+    }
+
+    &__user-avatar {
+      width: 36px;
+      height: 36px;
+      font-size: $font-size-base;
+    }
+
+    // Content
+    &__content {
+      padding: $spacing-lg;
+    }
+
+    // Hide desktop toggle
+    &__toggle {
+      display: none;
+    }
+  }
+}

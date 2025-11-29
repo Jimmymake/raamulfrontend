@@ -1,0 +1,270 @@
+// ==========================================
+// ADMIN SETTINGS PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.admin-settings {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-3xl;
+    flex-wrap: wrap;
+    gap: $spacing-lg;
+
+    h1 {
+      font-size: $font-size-4xl;
+
+      @include mobile {
+        font-size: $font-size-2xl;
+      }
+    }
+  }
+
+  &__save {
+    @include button-primary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-2xl;
+
+    @include mobile {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: $spacing-3xl;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Tabs
+  &__tabs {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    @include tablet {
+      flex-direction: row;
+      overflow-x: auto;
+      padding-bottom: $spacing-sm;
+    }
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    background: transparent;
+    border: none;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    font-size: $font-size-base;
+    cursor: pointer;
+    transition: all $transition-normal;
+    text-align: left;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: $text-primary;
+    }
+
+    &--active {
+      background: rgba($accent-primary, 0.15);
+      color: $accent-primary;
+    }
+
+    @include tablet {
+      white-space: nowrap;
+    }
+  }
+
+  &__tab-icon {
+    font-size: 20px;
+  }
+
+  // Content
+  &__content {
+    @include card;
+    padding: $spacing-3xl;
+  }
+
+  &__section {
+    h2 {
+      font-size: $font-size-2xl;
+      margin-bottom: $spacing-sm;
+    }
+
+    h3 {
+      font-size: $font-size-lg;
+      margin-top: $spacing-2xl;
+      margin-bottom: $spacing-lg;
+      padding-top: $spacing-xl;
+      border-top: 1px solid rgba(0, 0, 0, 0.03);
+
+      &:first-of-type {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+    }
+  }
+
+  &__section-desc {
+    color: $text-muted;
+    margin-bottom: $spacing-2xl;
+  }
+
+  // Form
+  &__form {
+    @include flex-column;
+    gap: $spacing-xl;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    label {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      color: $text-secondary;
+    }
+
+    input, select, textarea {
+      padding: $spacing-md $spacing-lg;
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid $border-color;
+      border-radius: $radius-md;
+      color: $text-primary;
+      font-size: $font-size-base;
+      transition: border-color $transition-normal;
+
+      &::placeholder {
+        color: $text-muted;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $accent-primary;
+      }
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+  }
+
+  // Toggle Group
+  &__toggle-group {
+    @include flex-column;
+    gap: $spacing-lg;
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-lg;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: $radius-md;
+
+    div {
+      @include flex-column;
+      gap: $spacing-xs;
+    }
+
+    strong {
+      font-size: $font-size-base;
+    }
+
+    span {
+      font-size: $font-size-sm;
+      color: $text-muted;
+    }
+  }
+
+  &__sub-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: $radius-md;
+    margin-top: -$spacing-sm;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Switch Toggle
+  &__switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+    flex-shrink: 0;
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: $radius-full;
+    transition: $transition-normal;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background: $text-primary;
+      border-radius: 50%;
+      transition: $transition-normal;
+    }
+  }
+
+  &__switch input:checked + &__slider {
+    background: $accent-gradient;
+  }
+
+  &__switch input:checked + &__slider::before {
+    transform: translateX(24px);
+  }
+}
+

@@ -1,0 +1,271 @@
+// ==========================================
+// AUTH PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.auth {
+  min-height: 100vh;
+  background: $bg-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-2xl;
+  position: relative;
+  overflow: hidden;
+
+  // Background Glows
+  &__bg-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+
+    &--1 {
+      top: 20%;
+      left: 10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba($accent-primary, 0.1) 0%, transparent 70%);
+    }
+
+    &--2 {
+      bottom: 20%;
+      right: 10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba($accent-primary, 0.08) 0%, transparent 70%);
+    }
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    z-index: 10;
+  }
+
+  // Header
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-md;
+    text-decoration: none;
+    margin-bottom: $spacing-2xl;
+
+    img {
+      height: 50px;
+    }
+  }
+
+  &__logo-text {
+    text-align: left;
+    @include flex-column;
+  }
+
+  &__logo-name {
+    font-size: 22px;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+  }
+
+  &__logo-sub {
+    font-size: 10px;
+    color: $accent-light;
+    letter-spacing: 2px;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subtitle {
+    color: $text-muted;
+    font-size: $font-size-md;
+  }
+
+  // Card
+  &__card {
+    @include card;
+    padding: 36px;
+    box-shadow: $shadow-lg;
+  }
+
+  // Tabs
+  &__tabs {
+    display: flex;
+    background: $bg-primary;
+    border-radius: $radius-xl;
+    padding: $spacing-xs;
+    margin-bottom: 28px;
+  }
+
+  &__tab {
+    flex: 1;
+    padding: $spacing-md;
+    background: transparent;
+    border: none;
+    border-radius: $radius-lg;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: $text-muted;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &--active {
+      background: $accent-gradient;
+      color: $text-primary;
+    }
+  }
+
+  // Form
+  &__form {
+    @include flex-column;
+    gap: $spacing-xl;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    label {
+      color: $text-secondary;
+      font-size: $font-size-base;
+      font-weight: $font-weight-medium;
+    }
+
+    input {
+      @include input-base;
+    }
+  }
+
+  &__password-wrapper {
+    position: relative;
+
+    input {
+      padding-right: 48px;
+    }
+  }
+
+  &__password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: $text-muted;
+    cursor: pointer;
+    font-size: 18px;
+    padding: $spacing-xs;
+  }
+
+  &__options {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -$spacing-sm;
+  }
+
+  &__forgot-link {
+    color: $accent-primary;
+    font-size: $font-size-base;
+    text-decoration: none;
+    transition: color $transition-normal;
+
+    &:hover {
+      color: $accent-light;
+    }
+  }
+
+  &__submit {
+    @include button-primary;
+    width: 100%;
+    padding: $spacing-lg;
+    font-size: $font-size-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    margin-top: $spacing-sm;
+  }
+
+  &__spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: $text-primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  // Divider
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    margin: $spacing-2xl 0;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $border-color-light;
+    }
+
+    span {
+      color: $text-muted;
+      font-size: $font-size-sm;
+    }
+  }
+
+  // Home Link
+  &__home-link {
+    display: block;
+    text-align: center;
+    padding: $spacing-md;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid $border-color-light;
+    border-radius: $radius-lg;
+    color: $text-secondary;
+    font-size: $font-size-base;
+    text-decoration: none;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: $text-primary;
+    }
+  }
+
+  // Footer
+  &__footer {
+    text-align: center;
+    color: $text-muted;
+    font-size: $font-size-sm;
+    margin-top: $spacing-2xl;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+

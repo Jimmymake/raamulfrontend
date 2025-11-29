@@ -1,0 +1,349 @@
+// ==========================================
+// CART PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.cart-page {
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__main {
+    padding-top: $navbar-height + 20px;
+  }
+
+  &__container {
+    @include container;
+    padding-top: $spacing-4xl;
+    padding-bottom: $spacing-4xl;
+  }
+
+  // Header
+  &__header {
+    margin-bottom: $spacing-3xl;
+
+    h1 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  // Empty State
+  &__empty {
+    text-align: center;
+    padding: 80px $spacing-xl;
+    background: $bg-card;
+    border-radius: $radius-3xl;
+    border: 1px solid $border-color;
+  }
+
+  &__empty-icon {
+    font-size: 64px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__empty h2 {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__empty p {
+    color: $text-muted;
+    margin-bottom: $spacing-2xl;
+  }
+
+  // Layout
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: $spacing-3xl;
+    align-items: start;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Items
+  &__items {
+    @include card;
+    overflow: hidden;
+  }
+
+  &__items-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 50px;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-2xl;
+    background: rgba(0, 0, 0, 0.03);
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 50px;
+    gap: $spacing-lg;
+    padding: $spacing-xl $spacing-2xl;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+      position: relative;
+      padding-right: 60px;
+    }
+  }
+
+  &__item-product {
+    display: flex;
+    gap: $spacing-lg;
+    align-items: center;
+
+    img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: $radius-lg;
+    }
+  }
+
+  &__item-details {
+    h3 {
+      font-size: $font-size-md;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-xs;
+    }
+
+    p {
+      font-size: $font-size-xs;
+      color: $text-muted;
+    }
+  }
+
+  &__item-price {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+
+    @include tablet {
+      &::before {
+        content: 'Price: ';
+        color: $text-muted;
+      }
+    }
+  }
+
+  &__item-unit {
+    font-size: $font-size-xs;
+    color: $text-muted;
+    display: block;
+  }
+
+  &__item-quantity {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__qty-btn {
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid $border-color-light;
+    border-radius: $radius-md;
+    color: $text-primary;
+    font-size: $font-size-lg;
+    cursor: pointer;
+    transition: all $transition-normal;
+    @include flex-center;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &__qty-value {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    min-width: 30px;
+    text-align: center;
+  }
+
+  &__item-total {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: $accent-primary;
+
+    @include tablet {
+      &::before {
+        content: 'Total: ';
+        color: $text-muted;
+        font-weight: $font-weight-normal;
+      }
+    }
+  }
+
+  &__remove-btn {
+    background: none;
+    border: none;
+    color: $text-muted;
+    cursor: pointer;
+    padding: $spacing-sm;
+    transition: color $transition-normal;
+    @include flex-center;
+
+    &:hover {
+      color: $error;
+    }
+
+    @include tablet {
+      position: absolute;
+      top: $spacing-xl;
+      right: $spacing-xl;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-xl $spacing-2xl;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  // Summary
+  &__summary {
+    @include card;
+    padding: 28px;
+    position: sticky;
+    top: 100px;
+
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-2xl;
+    }
+
+    @include tablet {
+      position: static;
+    }
+  }
+
+  &__summary-row {
+    @include flex-between;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-base;
+
+    span:first-child {
+      color: $text-secondary;
+    }
+
+    &--total {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+
+      span:last-child {
+        color: $accent-primary;
+      }
+    }
+  }
+
+  &__summary-divider {
+    height: 1px;
+    background: $border-color;
+    margin: $spacing-xl 0;
+  }
+
+  &__shipping-note {
+    font-size: $font-size-sm;
+    color: $accent-primary;
+    background: rgba($accent-primary, 0.1);
+    padding: $spacing-md;
+    border-radius: $radius-md;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__checkout-btn {
+    @include button-primary;
+    width: 100%;
+    padding: $spacing-lg;
+    font-size: $font-size-lg;
+    margin-top: $spacing-sm;
+  }
+
+  &__payment-methods {
+    margin-top: $spacing-xl;
+    text-align: center;
+
+    p {
+      font-size: $font-size-sm;
+      color: $text-muted;
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  &__methods {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: center;
+
+    span {
+      font-size: $font-size-xs;
+      padding: $spacing-sm $spacing-md;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: $radius-sm;
+      color: $text-secondary;
+    }
+  }
+
+  // Buttons
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-2xl;
+    border-radius: $radius-lg;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &--primary {
+      @include button-primary;
+    }
+
+    &--outline {
+      @include button-outline;
+    }
+
+    &--ghost {
+      background: none;
+      border: none;
+      color: $accent-primary;
+      padding: $spacing-md;
+    }
+  }
+}
+

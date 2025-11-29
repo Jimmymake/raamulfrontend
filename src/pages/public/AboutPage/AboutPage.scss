@@ -1,0 +1,379 @@
+// ==========================================
+// ABOUT PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.about-page {
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__main {
+    padding-top: $navbar-height;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__label {
+    display: inline-block;
+    color: $accent-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: $spacing-lg;
+  }
+
+  // Hero Section
+  &__hero {
+    position: relative;
+    padding: 100px 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  &__hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &__hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+
+    &--1 {
+      width: 600px;
+      height: 600px;
+      background: $accent-primary;
+      top: -200px;
+      left: -100px;
+    }
+
+    &--2 {
+      width: 500px;
+      height: 500px;
+      background: $accent-secondary;
+      bottom: -200px;
+      right: -100px;
+    }
+  }
+
+  &__title {
+    font-size: 56px;
+    font-weight: $font-weight-black;
+    line-height: 1.1;
+    max-width: 800px;
+    margin: 0 auto $spacing-2xl;
+
+    span {
+      background: $accent-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @include tablet {
+      font-size: 42px;
+    }
+
+    @include mobile {
+      font-size: 32px;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-xl;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+
+    @include mobile {
+      font-size: $font-size-lg;
+    }
+  }
+
+  // Stats Section
+  &__stats {
+    padding: $spacing-4xl 0;
+    background: rgba(0, 0, 0, 0.02);
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__stat {
+    text-align: center;
+    padding: $spacing-xl;
+  }
+
+  &__stat-value {
+    display: block;
+    font-size: 48px;
+    font-weight: $font-weight-black;
+    background: $accent-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: $spacing-sm;
+
+    @include mobile {
+      font-size: 36px;
+    }
+  }
+
+  &__stat-label {
+    color: $text-muted;
+    font-size: $font-size-base;
+  }
+
+  // Story Section
+  &__story {
+    padding: 100px 0;
+  }
+
+  &__story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-4xl;
+    align-items: center;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $spacing-3xl;
+    }
+  }
+
+  &__story-content {
+    h2 {
+      font-size: $font-size-4xl;
+      margin-bottom: $spacing-2xl;
+      line-height: 1.2;
+
+      @include mobile {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    p {
+      color: $text-secondary;
+      line-height: 1.8;
+      margin-bottom: $spacing-xl;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__story-image {
+    position: relative;
+
+    img {
+      width: 100%;
+      border-radius: $radius-xl;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__story-accent {
+    position: absolute;
+    top: $spacing-2xl;
+    left: $spacing-2xl;
+    right: -$spacing-2xl;
+    bottom: -$spacing-2xl;
+    background: $accent-gradient;
+    border-radius: $radius-xl;
+    opacity: 0.3;
+  }
+
+  // Section Header
+  &__section-header {
+    text-align: center;
+    margin-bottom: $spacing-4xl;
+
+    h2 {
+      font-size: $font-size-4xl;
+
+      @include mobile {
+        font-size: $font-size-3xl;
+      }
+    }
+  }
+
+  // Values Section
+  &__values {
+    padding: 100px 0;
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  &__values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__value-card {
+    @include card;
+    padding: $spacing-2xl;
+    text-align: center;
+    transition: all $transition-normal;
+
+    &:hover {
+      transform: translateY(-8px);
+      border-color: $accent-primary;
+    }
+  }
+
+  &__value-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__value-card h3 {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-md;
+  }
+
+  &__value-card p {
+    color: $text-muted;
+    font-size: $font-size-sm;
+    line-height: 1.7;
+  }
+
+  // Team Section
+  &__team {
+    padding: 100px 0;
+  }
+
+  &__team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-lg;
+    }
+  }
+
+  &__team-card {
+    text-align: center;
+  }
+
+  &__team-image {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto $spacing-xl;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid $border-color;
+    transition: border-color $transition-normal;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include mobile {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &__team-card:hover &__team-image {
+    border-color: $accent-primary;
+  }
+
+  &__team-card h3 {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__team-card span {
+    color: $text-muted;
+    font-size: $font-size-sm;
+  }
+
+  // CTA Section
+  &__cta {
+    padding: 100px 0;
+    background: linear-gradient(135deg, rgba($accent-primary, 0.1), rgba($accent-secondary, 0.05));
+    border-top: 1px solid rgba($accent-primary, 0.2);
+  }
+
+  &__cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+
+    h2 {
+      font-size: $font-size-4xl;
+      margin-bottom: $spacing-md;
+
+      @include mobile {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    p {
+      color: $text-secondary;
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-3xl;
+    }
+  }
+
+  &__cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    padding: $spacing-lg $spacing-3xl;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    transition: all $transition-normal;
+
+    &--primary {
+      @include button-primary;
+    }
+
+    &--outline {
+      @include button-outline;
+    }
+  }
+}
+

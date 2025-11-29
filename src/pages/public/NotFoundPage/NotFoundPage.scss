@@ -1,0 +1,284 @@
+// ==========================================
+// 404 NOT FOUND PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.not-found {
+  min-height: 100vh;
+  background: $bg-primary;
+  overflow: hidden;
+
+  &__main {
+    min-height: 100vh;
+    @include flex-center;
+    padding: $spacing-2xl;
+    position: relative;
+  }
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    text-align: center;
+  }
+
+  // Background Shapes
+  &__bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+
+    &--1 {
+      width: 500px;
+      height: 500px;
+      background: $accent-primary;
+      top: -200px;
+      left: -100px;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 400px;
+      height: 400px;
+      background: $accent-secondary;
+      bottom: -100px;
+      right: -100px;
+      animation: float 12s ease-in-out infinite reverse;
+    }
+
+    &--3 {
+      width: 300px;
+      height: 300px;
+      background: #ff6b6b;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.2; }
+  }
+
+  // Content
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  // 404 Code
+  &__code {
+    font-size: 180px;
+    font-weight: $font-weight-black;
+    line-height: 1;
+    margin-bottom: $spacing-2xl;
+    background: $accent-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+
+    @include tablet {
+      font-size: 140px;
+    }
+
+    @include mobile {
+      font-size: 100px;
+    }
+  }
+
+  &__code-zero {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-lg;
+
+    @include mobile {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__message {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    max-width: 500px;
+    margin: 0 auto $spacing-3xl;
+    line-height: 1.7;
+  }
+
+  &__suggestions {
+    @include card;
+    padding: $spacing-2xl;
+    margin-bottom: $spacing-3xl;
+    text-align: left;
+
+    h3 {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-lg;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      padding: $spacing-sm 0;
+      color: $text-secondary;
+      position: relative;
+      padding-left: $spacing-xl;
+
+      &::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: $accent-primary;
+      }
+    }
+  }
+
+  // Actions
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    padding: $spacing-lg $spacing-2xl;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    transition: all $transition-normal;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    &--back {
+      background: transparent;
+      border: 1px solid $border-color;
+      color: $text-primary;
+
+      &:hover {
+        border-color: $border-color-hover;
+        background: rgba(0, 0, 0, 0.03);
+      }
+    }
+
+    &--home {
+      @include button-primary;
+    }
+
+    &--products {
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid $border-color;
+      color: $text-primary;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
+
+  // Illustration
+  &__illustration {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__planet {
+    position: absolute;
+    bottom: -100px;
+    right: 10%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    box-shadow: 
+      inset -30px -30px 60px rgba(0, 0, 0, 0.4),
+      0 0 60px rgba(100, 100, 255, 0.2);
+    animation: planetFloat 20s ease-in-out infinite;
+
+    @include mobile {
+      width: 120px;
+      height: 120px;
+      bottom: -60px;
+    }
+  }
+
+  @keyframes planetFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  &__astronaut {
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    font-size: 60px;
+    animation: astronautFloat 10s ease-in-out infinite;
+
+    @include mobile {
+      font-size: 40px;
+      top: 15%;
+      right: 10%;
+    }
+  }
+
+  @keyframes astronautFloat {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -15px) rotate(5deg); }
+    50% { transform: translate(-5px, -25px) rotate(-5deg); }
+    75% { transform: translate(-15px, -10px) rotate(3deg); }
+  }
+
+  &__stars {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: $text-primary;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+}
+

@@ -1,0 +1,110 @@
+// ==========================================
+// TOAST STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.toast-container {
+  position: fixed;
+  top: 90px;
+  right: $spacing-2xl;
+  z-index: $z-toast;
+  @include flex-column;
+  gap: $spacing-md;
+  max-width: 400px;
+
+  @include mobile {
+    right: $spacing-lg;
+    left: $spacing-lg;
+    max-width: none;
+  }
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg $spacing-xl;
+  background: $bg-secondary;
+  border-radius: $radius-xl;
+  border: 1px solid $border-color;
+  box-shadow: $shadow-md;
+  animation: toastSlideIn 0.3s ease;
+
+  &--success {
+    background: linear-gradient(135deg, rgba($success, 0.15) 0%, rgba($success, 0.05) 100%);
+    border-color: rgba($success, 0.3);
+
+    .toast__icon {
+      color: $success;
+    }
+  }
+
+  &--error {
+    background: linear-gradient(135deg, rgba($error, 0.15) 0%, rgba($error, 0.05) 100%);
+    border-color: rgba($error, 0.3);
+
+    .toast__icon {
+      color: $error;
+    }
+  }
+
+  &--warning {
+    background: linear-gradient(135deg, rgba($warning, 0.15) 0%, rgba($warning, 0.05) 100%);
+    border-color: rgba($warning, 0.3);
+
+    .toast__icon {
+      color: $warning;
+    }
+  }
+
+  &--info {
+    background: linear-gradient(135deg, rgba($info, 0.15) 0%, rgba($info, 0.05) 100%);
+    border-color: rgba($info, 0.3);
+
+    .toast__icon {
+      color: $info;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    @include flex-center;
+  }
+
+  &__message {
+    flex: 1;
+    font-size: $font-size-base;
+    color: $text-primary;
+    line-height: 1.4;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    padding: $spacing-xs;
+    background: none;
+    border: none;
+    color: $text-muted;
+    cursor: pointer;
+    border-radius: $radius-sm;
+    transition: all $transition-normal;
+    @include flex-center;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: $text-primary;
+    }
+  }
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+

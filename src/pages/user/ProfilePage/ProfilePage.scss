@@ -1,0 +1,211 @@
+// ==========================================
+// PROFILE PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.profile-page {
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__main {
+    padding-top: $navbar-height + 20px;
+  }
+
+  &__container {
+    @include container;
+    padding-top: $spacing-4xl;
+    padding-bottom: $spacing-4xl;
+  }
+
+  // Header
+  &__header {
+    margin-bottom: $spacing-4xl;
+
+    h1 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  // Layout
+  &__layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: $spacing-3xl;
+    align-items: start;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Sidebar
+  &__sidebar {
+    position: sticky;
+    top: 100px;
+
+    @include tablet {
+      position: static;
+    }
+  }
+
+  &__user-card {
+    @include card;
+    padding: $spacing-2xl;
+    text-align: center;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__avatar {
+    width: 80px;
+    height: 80px;
+    background: $accent-gradient;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin: 0 auto $spacing-lg;
+  }
+
+  &__user-card h3 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__role {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    background: rgba($accent-primary, 0.1);
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    color: $accent-primary;
+    text-transform: capitalize;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__email {
+    display: block;
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  // Navigation
+  &__nav {
+    @include card;
+    overflow: hidden;
+  }
+
+  &__nav-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    width: 100%;
+    padding: $spacing-lg $spacing-xl;
+    background: none;
+    border: none;
+    color: $text-secondary;
+    font-size: $font-size-base;
+    font-family: $font-family;
+    text-align: left;
+    cursor: pointer;
+    transition: all $transition-normal;
+    border-left: 3px solid transparent;
+
+    svg {
+      opacity: 0.6;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: $text-primary;
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    &--active {
+      background: rgba($accent-primary, 0.1);
+      color: $accent-primary;
+      border-left-color: $accent-primary;
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    &--logout {
+      color: $error;
+      border-top: 1px solid $border-color;
+
+      &:hover {
+        background: rgba($error, 0.1);
+      }
+    }
+  }
+
+  // Content
+  &__content {
+    @include card;
+    padding: $spacing-3xl;
+  }
+
+  &__section {
+    h2 {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-sm;
+    }
+
+    > p {
+      color: $text-muted;
+      margin-bottom: $spacing-3xl;
+    }
+  }
+
+  // Form
+  &__form {
+    @include flex-column;
+    gap: $spacing-xl;
+  }
+
+  &__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    label {
+      color: $text-secondary;
+      font-size: $font-size-base;
+      font-weight: $font-weight-medium;
+    }
+
+    input {
+      @include input-base;
+    }
+  }
+
+  &__submit {
+    @include button-primary;
+    padding: $spacing-lg $spacing-3xl;
+    align-self: flex-start;
+    margin-top: $spacing-md;
+  }
+}
+

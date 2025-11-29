@@ -1,0 +1,392 @@
+// ==========================================
+// ADMIN USERS STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.admin-users {
+  &__header {
+    margin-bottom: $spacing-3xl;
+
+    h1 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+
+      @include mobile {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  &__controls {
+    @include flex-between;
+    margin-bottom: $spacing-2xl;
+    flex-wrap: wrap;
+    gap: $spacing-xl;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    background: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    padding: $spacing-md $spacing-lg;
+    min-width: 300px;
+
+    @include mobile {
+      min-width: 100%;
+    }
+
+    svg {
+      color: $text-muted;
+      flex-shrink: 0;
+    }
+
+    input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: $text-primary;
+      font-size: $font-size-base;
+      outline: none;
+    }
+  }
+
+  &__role-filters {
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+  }
+
+  &__role-btn {
+    padding: $spacing-sm $spacing-lg;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &--active {
+      background: $accent-gradient;
+      border-color: transparent;
+      color: $text-primary;
+    }
+  }
+
+  &__loading,
+  &__empty {
+    @include card;
+    padding: 80px;
+    text-align: center;
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  // Table
+  &__table {
+    @include card;
+    overflow-x: auto;
+  }
+
+  &__table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr 1fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-2xl;
+    background: rgba(0, 0, 0, 0.03);
+    font-size: $font-size-xs;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: $font-weight-semibold;
+    min-width: 900px;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr 1fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-2xl;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    min-width: 900px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__user-info {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    > div {
+      @include flex-column;
+      gap: 2px;
+    }
+
+    small {
+      font-size: $font-size-xs;
+      color: $text-muted;
+    }
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    background: $accent-gradient;
+    border-radius: 50%;
+    @include flex-center;
+    font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+
+  &__username {
+    font-weight: $font-weight-medium;
+  }
+
+  &__location {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+  }
+
+  &__role {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: capitalize;
+    width: fit-content;
+
+    &--user {
+      background: rgba($info, 0.1);
+      color: $info;
+    }
+
+    &--admin {
+      background: rgba($warning, 0.1);
+      color: $warning;
+    }
+
+    &--super_admin {
+      background: rgba($error, 0.1);
+      color: $error;
+    }
+  }
+
+  &__status {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: capitalize;
+    width: fit-content;
+
+    &--active {
+      background: rgba($success, 0.1);
+      color: $success;
+    }
+
+    &--inactive {
+      background: rgba($error, 0.1);
+      color: $error;
+    }
+  }
+
+  &__date {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  &__action-btn {
+    padding: $spacing-sm $spacing-md;
+    background: rgba($accent-primary, 0.1);
+    border: none;
+    border-radius: $radius-md;
+    color: $accent-primary;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba($accent-primary, 0.2);
+    }
+
+    &--danger {
+      background: rgba($error, 0.1);
+      color: $error;
+
+      &:hover {
+        background: rgba($error, 0.2);
+      }
+    }
+
+    &--success {
+      background: rgba($success, 0.1);
+      color: $success;
+
+      &:hover {
+        background: rgba($success, 0.2);
+      }
+    }
+  }
+
+  // Pagination
+  &__pagination {
+    @include flex-center;
+    gap: $spacing-xl;
+    margin-top: $spacing-2xl;
+
+    button {
+      @include button-outline;
+      padding: $spacing-md $spacing-xl;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      color: $text-secondary;
+    }
+  }
+
+  // Modal
+  &__modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    @include flex-center;
+    z-index: $z-modal;
+    padding: $spacing-2xl;
+  }
+
+  &__modal {
+    background: $bg-secondary;
+    border-radius: $radius-2xl;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  &__modal-header {
+    @include flex-between;
+    padding: $spacing-2xl;
+    border-bottom: 1px solid $border-color;
+
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: $text-muted;
+      cursor: pointer;
+
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+
+  &__modal-content {
+    padding: $spacing-2xl;
+  }
+
+  &__modal-avatar {
+    width: 80px;
+    height: 80px;
+    background: $accent-gradient;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 32px;
+    font-weight: $font-weight-bold;
+    margin: 0 auto $spacing-2xl;
+  }
+
+  &__detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__detail-item {
+    @include flex-column;
+    gap: $spacing-xs;
+
+    label {
+      font-size: $font-size-xs;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    span {
+      font-size: $font-size-base;
+    }
+
+    select {
+      @include input-base;
+      padding: $spacing-sm $spacing-md;
+    }
+  }
+
+  &__verified {
+    color: $success;
+  }
+
+  &__not-verified {
+    color: $error;
+  }
+
+  &__modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: $spacing-2xl;
+    border-top: 1px solid $border-color;
+  }
+
+  &__btn-close {
+    @include button-outline;
+    padding: $spacing-md $spacing-2xl;
+  }
+}
+

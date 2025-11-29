@@ -1,0 +1,299 @@
+// ==========================================
+// ADMIN ORDERS STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.admin-orders {
+  &__header {
+    margin-bottom: $spacing-3xl;
+
+    h1 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+
+      @include mobile {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+    flex-wrap: wrap;
+  }
+
+  &__filter {
+    padding: $spacing-md $spacing-xl;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &--active {
+      background: $accent-gradient;
+      border-color: transparent;
+      color: $text-primary;
+    }
+  }
+
+  &__loading,
+  &__empty {
+    @include card;
+    padding: 80px;
+    text-align: center;
+
+    @include mobile {
+      padding: $spacing-3xl;
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  // Table
+  &__table {
+    @include card;
+    overflow-x: auto;
+  }
+
+  &__table-header {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr 0.8fr 1fr 0.8fr 1fr 1fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-2xl;
+    background: rgba(0, 0, 0, 0.03);
+    font-size: $font-size-xs;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: $font-weight-semibold;
+    min-width: 900px;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__table-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr 0.8fr 1fr 0.8fr 1fr 1fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-2xl;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    min-width: 900px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__order-id {
+    color: $accent-primary;
+    font-weight: $font-weight-medium;
+  }
+
+  &__customer {
+    @include flex-column;
+    gap: 2px;
+
+    small {
+      font-size: $font-size-xs;
+      color: $text-muted;
+    }
+  }
+
+  &__total {
+    font-weight: $font-weight-semibold;
+  }
+
+  &__payment {
+    font-size: $font-size-sm;
+
+    &--completed {
+      color: $success;
+    }
+
+    &--pending {
+      color: $warning;
+    }
+
+    &--failed {
+      color: $error;
+    }
+  }
+
+  &__status {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    width: fit-content;
+  }
+
+  &__date {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  &__action-btn {
+    padding: $spacing-sm $spacing-md;
+    background: rgba($accent-primary, 0.1);
+    border: none;
+    border-radius: $radius-md;
+    color: $accent-primary;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba($accent-primary, 0.2);
+    }
+
+    &--status {
+      background: rgba($success, 0.1);
+      color: $success;
+
+      &:hover {
+        background: rgba($success, 0.2);
+      }
+    }
+  }
+
+  // Pagination
+  &__pagination {
+    @include flex-center;
+    gap: $spacing-xl;
+    margin-top: $spacing-2xl;
+
+    button {
+      @include button-outline;
+      padding: $spacing-md $spacing-xl;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      color: $text-secondary;
+    }
+  }
+
+  // Modal
+  &__modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    @include flex-center;
+    z-index: $z-modal;
+    padding: $spacing-2xl;
+  }
+
+  &__modal {
+    background: $bg-secondary;
+    border-radius: $radius-2xl;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  &__modal-header {
+    @include flex-between;
+    padding: $spacing-2xl;
+    border-bottom: 1px solid $border-color;
+
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: $text-muted;
+      cursor: pointer;
+
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+
+  &__modal-content {
+    padding: $spacing-2xl;
+    @include flex-column;
+    gap: $spacing-xl;
+  }
+
+  &__modal-order {
+    color: $text-secondary;
+    font-size: $font-size-base;
+
+    strong {
+      color: $accent-primary;
+    }
+  }
+
+  &__field {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    label {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      font-weight: $font-weight-medium;
+    }
+
+    select,
+    textarea {
+      @include input-base;
+    }
+
+    textarea {
+      resize: none;
+    }
+  }
+
+  &__modal-actions {
+    display: flex;
+    gap: $spacing-lg;
+    justify-content: flex-end;
+    padding: $spacing-2xl;
+    border-top: 1px solid $border-color;
+  }
+
+  &__btn-cancel {
+    @include button-outline;
+    padding: $spacing-md $spacing-2xl;
+  }
+
+  &__btn-submit {
+    @include button-primary;
+    padding: $spacing-md $spacing-2xl;
+  }
+}
+

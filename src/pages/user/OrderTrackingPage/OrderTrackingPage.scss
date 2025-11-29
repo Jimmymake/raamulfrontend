@@ -1,0 +1,379 @@
+// ==========================================
+// ORDER TRACKING PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.order-tracking {
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__loading, &__not-found {
+    min-height: calc(100vh - #{$navbar-height});
+    @include flex-center;
+    flex-direction: column;
+    padding: $spacing-2xl;
+  }
+
+  &__not-found {
+    text-align: center;
+  }
+
+  &__not-found-icon {
+    font-size: 80px;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__not-found h2 {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-md;
+  }
+
+  &__not-found p {
+    color: $text-muted;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__main {
+    padding-top: $navbar-height;
+  }
+
+  &__container {
+    @include container;
+    padding-top: $spacing-3xl;
+    padding-bottom: $spacing-4xl;
+    max-width: 900px;
+  }
+
+  // Header
+  &__header {
+    margin-bottom: $spacing-3xl;
+    text-align: center;
+
+    h1 {
+      font-size: $font-size-4xl;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  &__back {
+    display: inline-block;
+    color: $accent-primary;
+    text-decoration: none;
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-sm;
+    transition: opacity $transition-normal;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // Banner
+  &__banner {
+    @include card;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    padding: $spacing-2xl;
+    margin-bottom: $spacing-3xl;
+    background: linear-gradient(135deg, rgba($accent-primary, 0.1), rgba($accent-secondary, 0.05));
+    border-color: rgba($accent-primary, 0.3);
+
+    &--delivered {
+      background: linear-gradient(135deg, rgba($success, 0.1), rgba($success, 0.05));
+      border-color: rgba($success, 0.3);
+    }
+
+    &--cancelled {
+      background: linear-gradient(135deg, rgba($error, 0.1), rgba($error, 0.05));
+      border-color: rgba($error, 0.3);
+    }
+  }
+
+  &__banner-icon {
+    font-size: 48px;
+  }
+
+  &__banner-info h2 {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__banner-info p {
+    color: $text-secondary;
+  }
+
+  // Progress Steps
+  &__progress {
+    @include card;
+    padding: $spacing-3xl;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-2xl;
+    }
+  }
+
+  &__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    position: relative;
+
+    @include mobile {
+      flex-direction: row;
+      text-align: left;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__step-marker {
+    position: relative;
+    margin-bottom: $spacing-lg;
+
+    @include mobile {
+      margin-bottom: 0;
+    }
+  }
+
+  &__step-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.03);
+    border: 2px solid $border-color;
+    transition: all $transition-normal;
+
+    .order-tracking__step--active & {
+      background: $accent-gradient;
+      border-color: transparent;
+    }
+
+    .order-tracking__step--current & {
+      box-shadow: 0 0 0 4px rgba($accent-primary, 0.2);
+    }
+
+    @include mobile {
+      width: 48px;
+      height: 48px;
+      font-size: 20px;
+    }
+  }
+
+  &__step-line {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: calc(100% - 20px);
+    height: 2px;
+    background: $border-color;
+    transform: translateX(10px);
+    z-index: 0;
+
+    &--active {
+      background: $accent-gradient;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__step-info {
+    @include flex-column;
+    gap: $spacing-xs;
+
+    @include mobile {
+      flex: 1;
+    }
+  }
+
+  &__step-label {
+    font-weight: $font-weight-semibold;
+    color: $text-muted;
+    font-size: $font-size-sm;
+
+    .order-tracking__step--active & {
+      color: $text-primary;
+    }
+  }
+
+  &__step-desc {
+    font-size: $font-size-xs;
+    color: $text-muted;
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  // Timeline
+  &__timeline {
+    @include card;
+    padding: $spacing-2xl;
+    margin-bottom: $spacing-3xl;
+
+    h3 {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-2xl;
+    }
+  }
+
+  &__timeline-empty {
+    text-align: center;
+    padding: $spacing-2xl;
+    color: $text-muted;
+  }
+
+  &__timeline-list {
+    @include flex-column;
+    gap: 0;
+    padding-left: $spacing-xl;
+    border-left: 2px solid $border-color;
+  }
+
+  &__event {
+    position: relative;
+    padding-bottom: $spacing-2xl;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &__event-dot {
+    position: absolute;
+    left: -29px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: $accent-primary;
+    border: 2px solid $bg-primary;
+  }
+
+  &__event-content {
+    padding-left: $spacing-lg;
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  &__event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+  }
+
+  &__event-status {
+    font-weight: $font-weight-semibold;
+    text-transform: capitalize;
+  }
+
+  &__event-time {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  &__event-location {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+  }
+
+  &__event-notes {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    padding: $spacing-md;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: $radius-md;
+  }
+
+  // Info Grid
+  &__info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-3xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__info-card {
+    @include card;
+    padding: $spacing-xl;
+
+    h4 {
+      font-size: $font-size-sm;
+      color: $text-muted;
+      margin-bottom: $spacing-md;
+    }
+
+    p {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-xs;
+    }
+  }
+
+  &__info-sub {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  &__payment-status {
+    &--paid {
+      color: $success;
+    }
+
+    &--pending {
+      color: $warning;
+    }
+
+    &--failed {
+      color: $error;
+    }
+  }
+
+  // Actions
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    @include button-outline;
+    text-decoration: none;
+    padding: $spacing-lg $spacing-2xl;
+
+    &--primary {
+      @include button-primary;
+    }
+
+    &--secondary {
+      @include button-outline;
+    }
+  }
+}
+

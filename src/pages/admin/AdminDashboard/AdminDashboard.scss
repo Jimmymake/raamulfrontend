@@ -1,0 +1,329 @@
+// ==========================================
+// ADMIN DASHBOARD STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.admin-dashboard {
+  &__header {
+    margin-bottom: $spacing-3xl;
+
+    h1 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+
+      @include mobile {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      color: $text-muted;
+      font-size: $font-size-md;
+
+      @include mobile {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+
+  &__loading {
+    padding: 100px 0;
+    @include flex-center;
+  }
+
+  // Stats
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+    margin-bottom: $spacing-3xl;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__stat-card {
+    @include card;
+    padding: $spacing-2xl;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    text-decoration: none;
+    transition: all $transition-normal;
+
+    @include mobile {
+      padding: $spacing-lg;
+      gap: $spacing-lg;
+    }
+
+    &:hover {
+      border-color: $border-color-hover;
+      transform: translateY(-4px);
+    }
+  }
+
+  &__stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: $radius-xl;
+    @include flex-center;
+    font-size: 24px;
+    flex-shrink: 0;
+
+    @include mobile {
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+    }
+  }
+
+  &__stat-info {
+    @include flex-column;
+    gap: $spacing-xs;
+  }
+
+  &__stat-value {
+    font-size: 28px;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+
+    @include mobile {
+      font-size: 22px;
+    }
+  }
+
+  &__stat-label {
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+
+  // Revenue
+  &__revenue {
+    @include card;
+    padding: $spacing-3xl;
+    @include flex-between;
+    margin-bottom: $spacing-3xl;
+    background: linear-gradient(135deg, rgba($success, 0.1) 0%, rgba($success, 0.02) 100%);
+    border-color: rgba($success, 0.2);
+
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-xl;
+      text-align: center;
+    }
+  }
+
+  &__revenue-content {
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  &__revenue-label {
+    font-size: $font-size-base;
+    color: $text-muted;
+  }
+
+  &__revenue-value {
+    font-size: 36px;
+    font-weight: $font-weight-bold;
+    color: $success;
+
+    @include mobile {
+      font-size: 28px;
+    }
+  }
+
+  &__revenue-link {
+    color: $success;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    transition: opacity $transition-normal;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // Section
+  &__section {
+    @include card;
+    padding: $spacing-2xl;
+    margin-bottom: $spacing-3xl;
+
+    @include mobile {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__section-header {
+    @include flex-between;
+    margin-bottom: $spacing-2xl;
+
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+    }
+
+    a {
+      color: $accent-primary;
+      font-size: $font-size-sm;
+      text-decoration: none;
+
+      &:hover {
+        color: $accent-light;
+      }
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: $spacing-4xl;
+    color: $text-muted;
+  }
+
+  // Table
+  &__orders-table {
+    @include flex-column;
+  }
+
+  &__table-header {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: $radius-lg;
+    font-size: $font-size-xs;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-sm;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__table-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+    border-radius: $radius-lg;
+    text-decoration: none;
+    color: $text-primary;
+    font-size: $font-size-base;
+    transition: background $transition-normal;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-sm;
+      padding: $spacing-lg;
+      border: 1px solid $border-color;
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  &__order-id {
+    color: $accent-primary;
+    font-weight: $font-weight-medium;
+  }
+
+  &__order-amount {
+    font-weight: $font-weight-semibold;
+  }
+
+  &__order-date {
+    color: $text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__status {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: capitalize;
+    width: fit-content;
+
+    &--pending {
+      background: rgba($warning, 0.1);
+      color: $warning;
+    }
+
+    &--processing {
+      background: rgba($info, 0.1);
+      color: $info;
+    }
+
+    &--shipped {
+      background: rgba(#06b6d4, 0.1);
+      color: #06b6d4;
+    }
+
+    &--delivered {
+      background: rgba($success, 0.1);
+      color: $success;
+    }
+
+    &--cancelled {
+      background: rgba($error, 0.1);
+      color: $error;
+    }
+  }
+
+  // Quick Actions
+  &__actions {
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  &__action-buttons {
+    display: flex;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__action-btn {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-lg $spacing-2xl;
+    @include card;
+    text-decoration: none;
+    color: $text-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    transition: all $transition-normal;
+
+    svg {
+      color: $accent-primary;
+    }
+
+    &:hover {
+      border-color: $border-color-hover;
+      transform: translateY(-2px);
+    }
+  }
+}
+

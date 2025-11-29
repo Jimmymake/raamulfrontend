@@ -1,0 +1,467 @@
+// ==========================================
+// ADMIN PRODUCTS STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.admin-products {
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-3xl;
+    flex-wrap: wrap;
+    gap: $spacing-xl;
+
+    h1 {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+
+      @include mobile {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  &__add-btn {
+    @include button-primary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    background: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    padding: $spacing-md $spacing-lg;
+    margin-bottom: $spacing-2xl;
+    max-width: 400px;
+
+    @include mobile {
+      max-width: 100%;
+    }
+
+    svg {
+      color: $text-muted;
+      flex-shrink: 0;
+    }
+
+    input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: $text-primary;
+      font-size: $font-size-base;
+      outline: none;
+      min-width: 0;
+    }
+  }
+
+  &__loading,
+  &__empty {
+    @include card;
+    padding: 80px;
+    text-align: center;
+
+    p {
+      color: $text-muted;
+      margin-bottom: $spacing-xl;
+    }
+
+    button {
+      @include button-primary;
+    }
+  }
+
+  // Table
+  &__table {
+    @include card;
+    overflow: hidden;
+  }
+
+  &__table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.8fr 0.8fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-2xl;
+    background: rgba(0, 0, 0, 0.03);
+    font-size: $font-size-xs;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: $font-weight-semibold;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.8fr 0.8fr 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-2xl;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    @include tablet {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-md;
+      padding: $spacing-lg;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-sm;
+      padding: $spacing-lg;
+    }
+  }
+
+  &__product-info {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+
+    @include mobile {
+      width: 100%;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: $radius-md;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    > div {
+      @include flex-column;
+      gap: 2px;
+      min-width: 0;
+    }
+  }
+
+  &__product-name {
+    font-weight: $font-weight-medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include mobile {
+      white-space: normal;
+    }
+  }
+
+  &__product-category {
+    font-size: $font-size-xs;
+    color: $text-muted;
+  }
+
+  // Mobile label helpers
+  &__mobile-label {
+    display: none;
+    font-size: $font-size-xs;
+    color: $text-muted;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  &__price {
+    font-weight: $font-weight-semibold;
+    color: $accent-primary;
+
+    small {
+      font-size: $font-size-xs;
+      color: $text-muted;
+      font-weight: $font-weight-normal;
+    }
+  }
+
+  &__stock {
+    &--out {
+      color: $error;
+    }
+  }
+
+  &__status {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: capitalize;
+    width: fit-content;
+
+    &--active {
+      background: rgba($success, 0.1);
+      color: $success;
+    }
+
+    &--inactive {
+      background: rgba($error, 0.1);
+      color: $error;
+    }
+
+    &--draft {
+      background: rgba($warning, 0.1);
+      color: $warning;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+
+    @include mobile {
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: $spacing-sm;
+      padding-top: $spacing-md;
+      border-top: 1px solid rgba(0, 0, 0, 0.03);
+    }
+  }
+
+  &__action-btn {
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &--edit {
+      background: rgba($accent-primary, 0.1);
+      border: none;
+      color: $accent-primary;
+
+      &:hover {
+        background: rgba($accent-primary, 0.2);
+      }
+    }
+
+    &--delete {
+      background: rgba($error, 0.1);
+      border: none;
+      color: $error;
+
+      &:hover {
+        background: rgba($error, 0.2);
+      }
+    }
+  }
+
+  // Pagination
+  &__pagination {
+    @include flex-center;
+    gap: $spacing-xl;
+    margin-top: $spacing-2xl;
+
+    button {
+      @include button-outline;
+      padding: $spacing-md $spacing-xl;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      color: $text-secondary;
+    }
+  }
+
+  // Modal
+  &__modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    @include flex-center;
+    z-index: $z-modal;
+    padding: $spacing-2xl;
+  }
+
+  &__modal {
+    background: $bg-secondary;
+    border-radius: $radius-2xl;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  &__modal-header {
+    @include flex-between;
+    padding: $spacing-2xl;
+    border-bottom: 1px solid $border-color;
+    position: sticky;
+    top: 0;
+    background: $bg-secondary;
+    z-index: 1;
+
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__modal-close {
+    background: none;
+    border: none;
+    color: $text-muted;
+    cursor: pointer;
+    padding: $spacing-sm;
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+
+  &__form {
+    padding: $spacing-2xl;
+    @include flex-column;
+    gap: $spacing-xl;
+  }
+
+  &__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    label {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      font-weight: $font-weight-medium;
+    }
+
+    input,
+    select,
+    textarea {
+      @include input-base;
+    }
+
+    textarea {
+      resize: none;
+    }
+  }
+
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+  }
+
+  &__image-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: $radius-md;
+    }
+
+    button {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 24px;
+      height: 24px;
+      background: $error;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      @include flex-center;
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__image-upload {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed $border-color;
+    border-radius: $radius-md;
+    @include flex-center;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &:hover {
+      border-color: $accent-primary;
+    }
+
+    input {
+      display: none;
+    }
+
+    span {
+      color: $text-muted;
+      font-size: $font-size-sm;
+    }
+
+    &--loading {
+      cursor: wait;
+      opacity: 0.7;
+      border-color: $accent-primary;
+    }
+  }
+
+  &__upload-spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  &__upload-hint {
+    color: $text-muted;
+    font-size: $font-size-xs;
+    margin-top: $spacing-sm;
+  }
+
+  &__form-actions {
+    display: flex;
+    gap: $spacing-lg;
+    justify-content: flex-end;
+    margin-top: $spacing-lg;
+  }
+
+  &__btn-cancel {
+    @include button-outline;
+    padding: $spacing-md $spacing-2xl;
+  }
+
+  &__btn-submit {
+    @include button-primary;
+    padding: $spacing-md $spacing-2xl;
+  }
+}
+

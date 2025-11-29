@@ -1,0 +1,333 @@
+// ==========================================
+// CONTACT PAGE STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.contact-page {
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__main {
+    padding-top: $navbar-height;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__label {
+    display: inline-block;
+    color: $accent-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: $spacing-lg;
+  }
+
+  // Hero Section
+  &__hero {
+    position: relative;
+    padding: 80px 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  &__hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &__hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+
+    &--1 {
+      width: 500px;
+      height: 500px;
+      background: $accent-primary;
+      top: -200px;
+      right: -100px;
+    }
+
+    &--2 {
+      width: 400px;
+      height: 400px;
+      background: $accent-secondary;
+      bottom: -150px;
+      left: -100px;
+    }
+  }
+
+  &__title {
+    font-size: 48px;
+    font-weight: $font-weight-black;
+    line-height: 1.1;
+    max-width: 600px;
+    margin: 0 auto $spacing-xl;
+
+    span {
+      background: $accent-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @include mobile {
+      font-size: 32px;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  // Info Section
+  &__info {
+    padding: $spacing-4xl 0;
+  }
+
+  &__info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__info-card {
+    @include card;
+    padding: $spacing-2xl;
+    text-align: center;
+    transition: all $transition-normal;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: $accent-primary;
+    }
+  }
+
+  &__info-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__info-card h3 {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-md;
+  }
+
+  &__info-card p {
+    color: $text-muted;
+    font-size: $font-size-sm;
+    margin: $spacing-xs 0;
+  }
+
+  // Form Section
+  &__form-section {
+    padding: $spacing-4xl 0;
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: $spacing-4xl;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__form-wrapper {
+    @include card;
+    padding: $spacing-3xl;
+
+    h2 {
+      font-size: $font-size-2xl;
+      margin-bottom: $spacing-sm;
+    }
+
+    > p {
+      color: $text-muted;
+      margin-bottom: $spacing-2xl;
+    }
+  }
+
+  &__form {
+    @include flex-column;
+    gap: $spacing-xl;
+  }
+
+  &__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__form-group {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    label {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      color: $text-secondary;
+    }
+
+    input, select, textarea {
+      padding: $spacing-md $spacing-lg;
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid $border-color;
+      border-radius: $radius-md;
+      color: $text-primary;
+      font-size: $font-size-base;
+      transition: border-color $transition-normal;
+
+      &::placeholder {
+        color: $text-muted;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $accent-primary;
+      }
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+
+  &__submit {
+    @include button-primary;
+    padding: $spacing-lg $spacing-3xl;
+    font-size: $font-size-base;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    align-self: flex-start;
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  // Map
+  &__map {
+    @include card;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__map-placeholder {
+    text-align: center;
+    padding: $spacing-3xl;
+  }
+
+  &__map-icon {
+    font-size: 80px;
+    display: block;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__map-placeholder h3 {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-md;
+  }
+
+  &__map-placeholder p {
+    color: $text-muted;
+    margin-bottom: $spacing-xl;
+    line-height: 1.7;
+  }
+
+  &__map-link {
+    color: $accent-primary;
+    text-decoration: none;
+    font-weight: $font-weight-semibold;
+    transition: opacity $transition-normal;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  // Section Header
+  &__section-header {
+    text-align: center;
+    margin-bottom: $spacing-4xl;
+
+    h2 {
+      font-size: $font-size-4xl;
+
+      @include mobile {
+        font-size: $font-size-3xl;
+      }
+    }
+  }
+
+  // FAQ Section
+  &__faq {
+    padding: $spacing-4xl 0;
+  }
+
+  &__faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-xl;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__faq-item {
+    @include card;
+    padding: $spacing-2xl;
+
+    h3 {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-md;
+      color: $accent-primary;
+    }
+
+    p {
+      color: $text-secondary;
+      line-height: 1.7;
+    }
+  }
+}
+
