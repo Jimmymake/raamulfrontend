@@ -117,12 +117,24 @@
     gap: $spacing-lg;
     align-items: center;
 
-    img {
+    // For ProductImage component
+    .product-image {
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0;
+    }
+
+    // Legacy img styles
+    img:not(.product-image__img) {
       width: 70px;
       height: 70px;
       object-fit: cover;
       border-radius: $radius-lg;
     }
+  }
+
+  &__item-image {
+    flex-shrink: 0;
   }
 
   &__item-details {
@@ -346,4 +358,7 @@
     }
   }
 }
+
+
+
 

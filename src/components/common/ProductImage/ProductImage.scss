@@ -1,0 +1,190 @@
+// ==========================================
+// PRODUCT IMAGE COMPONENT STYLES
+// ==========================================
+
+@import '../../../styles/variables';
+
+.product-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  // Gradient background for PNG transparency
+  background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+  border-radius: $radius-lg;
+
+  // Size variants
+  &--tiny {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    
+    .product-image__img {
+      max-height: 32px;
+    }
+  }
+
+  &--small {
+    width: 60px;
+    height: 60px;
+    padding: 6px;
+    
+    .product-image__img {
+      max-height: 48px;
+    }
+  }
+
+  &--medium {
+    width: 100%;
+    height: 180px;
+    padding: $spacing-md;
+    
+    .product-image__img {
+      max-height: 160px;
+    }
+  }
+
+  &--large {
+    width: 100%;
+    height: 280px;
+    padding: $spacing-xl;
+    
+    .product-image__img {
+      max-height: 240px;
+    }
+  }
+
+  &--xlarge {
+    width: 100%;
+    height: 400px;
+    padding: $spacing-2xl;
+    
+    .product-image__img {
+      max-height: 360px;
+    }
+  }
+
+  &--full {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    padding: $spacing-lg;
+  }
+
+  &--clickable {
+    cursor: pointer;
+    transition: transform $transition-normal;
+
+    &:hover {
+      transform: scale(1.02);
+      
+      .product-image__img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  // Skeleton loading
+  &__skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  &__skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 100%
+    );
+    animation: shimmer 1.5s infinite;
+  }
+
+  // Image styles
+  &__img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform $transition-normal, opacity $transition-normal;
+    z-index: 2;
+    position: relative;
+
+    &--shadow {
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.12));
+    }
+
+    &--loading {
+      opacity: 0;
+    }
+  }
+}
+
+// Shimmer animation
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// ==========================================
+// PRODUCT IMAGE GRID (for multiple images)
+// ==========================================
+.product-images {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  &__main {
+    border-radius: $radius-xl;
+    overflow: hidden;
+  }
+
+  &__thumbnails {
+    display: flex;
+    gap: $spacing-sm;
+    overflow-x: auto;
+    padding-bottom: $spacing-sm;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $bg-secondary;
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $border-color;
+      border-radius: 2px;
+    }
+  }
+
+  &__thumbnail {
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover,
+    &--active {
+      border-color: $accent-primary;
+    }
+  }
+}
+

@@ -1,21 +1,21 @@
 // ==========================================
-// API CLIENT - Axios Configuration
+// API CLIENT - Fetch Configuration
 // ==========================================
 
-const API_BASE_URL = 'https://vault.impalapay.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://vault.impalapay.com/api';
 
-// Create a simple fetch wrapper with interceptors
+// Create a fetch wrapper with user token authentication
 class ApiClient {
   constructor(baseURL) {
     this.baseURL = baseURL;
   }
 
-  // Get auth token
+  // Get user token from localStorage (from login)
   getToken() {
     return localStorage.getItem('token');
   }
 
-  // Build headers
+  // Build headers with user's login token
   getHeaders(customHeaders = {}) {
     const headers = {
       'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ class ApiClient {
 
       throw {
         status: response.status,
-        message: data.message || 'An error occurred',
+        message: data.message || data.error || 'An error occurred',
         errors: data.errors || [],
       };
     }
@@ -134,4 +134,3 @@ const api = new ApiClient(API_BASE_URL);
 
 export default api;
 export { API_BASE_URL };
-

@@ -209,3 +209,6 @@ const SearchBar = ({ placeholder = 'Search products...', onSearch, className = '
 
 export default SearchBar;
 
+
+
+

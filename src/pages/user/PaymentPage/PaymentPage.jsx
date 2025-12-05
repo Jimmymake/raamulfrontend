@@ -32,15 +32,26 @@ const PaymentPage = () => {
   const fetchOrder = async () => {
     try {
       const data = await orderService.getById(orderId);
-      setOrder(data.order);
+      // Handle both response structures: {order: {...}} or direct order object
+      const orderData = data.order || data;
+      
+      if (!orderData || !orderData.id) {
+        showError('Order not found.');
+        navigate('/orders');
+        return;
+      }
+      
+      setOrder(orderData);
       
       // Check if payment already completed
-      const payment = parseJsonField(data.order?.payment);
-      if (payment?.status === 'completed') {
+      const payment = parseJsonField(orderData?.payment);
+      const paymentStatus = payment?.payment_status || payment?.status;
+      if (paymentStatus === 'completed' || paymentStatus === 'success') {
         showInfo('This order has already been paid.');
         navigate('/orders');
       }
     } catch (error) {
+      console.error('[PaymentPage] Error fetching order:', error);
       showError('Failed to load order details.');
       navigate('/orders');
     } finally {
@@ -67,16 +78,24 @@ const PaymentPage = () => {
       return;
     }
 
+    if (!order?.order_id) {
+      showError('Order details not loaded. Please refresh the page.');
+      return;
+    }
+
     setProcessing(true);
 
     try {
+      // Format phone and send to backend (backend handles Mam-Laka token)
       const formattedPhone = paymentService.formatPhoneNumber(phoneNumber);
+      console.log('[PaymentPage] Initiating payment for order:', order.order_id);
       const data = await paymentService.initiate(order.order_id, formattedPhone);
       
-      setCheckoutRequestId(data.checkoutRequestId);
+      setCheckoutRequestId(data.checkoutRequestId || data.checkout_request_id);
       setPaymentInitiated(true);
       showSuccess('Payment request sent! Please check your phone for the M-Pesa prompt.');
     } catch (error) {
+      console.error('[PaymentPage] Payment error:', error);
       showError(error.message || 'Failed to initiate payment. Please try again.');
     } finally {
       setProcessing(false);
@@ -91,10 +110,13 @@ const PaymentPage = () => {
     try {
       const data = await paymentService.checkStatus(checkoutRequestId);
       
-      if (data.payment?.status === 'completed') {
+      // Check both possible field names from backend
+      const status = data.payment?.payment_status || data.payment?.status;
+      
+      if (status === 'completed' || status === 'success') {
         showSuccess('Payment successful! Thank you for your order.');
         navigate('/orders');
-      } else if (data.payment?.status === 'failed') {
+      } else if (status === 'failed' || status === 'cancelled') {
         showError('Payment failed. Please try again.');
         setPaymentInitiated(false);
       } else {
@@ -263,4 +285,5 @@ const PaymentPage = () => {
 };
 
 export default PaymentPage;
+
 

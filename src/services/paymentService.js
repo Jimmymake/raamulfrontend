@@ -5,7 +5,7 @@
 import api from './api';
 
 const paymentService = {
-  // Initiate M-Pesa STK Push
+  // Initiate M-Pesa STK Push (backend handles Mam-Laka token)
   async initiate(orderId, phoneNumber) {
     return api.post('/payments/initiate', {
       order_id: orderId,
@@ -53,14 +53,19 @@ const paymentService = {
     // Remove spaces and dashes
     let formatted = phone.replace(/[\s-]/g, '');
     
-    // If starts with 0, replace with 254
+    // If starts with 0, replace with +254
     if (formatted.startsWith('0')) {
-      formatted = '254' + formatted.substring(1);
+      formatted = '+254' + formatted.substring(1);
     }
     
-    // If starts with +, remove it
-    if (formatted.startsWith('+')) {
-      formatted = formatted.substring(1);
+    // If starts with 254 (no +), add +
+    if (formatted.startsWith('254')) {
+      formatted = '+' + formatted;
+    }
+    
+    // Ensure it has + prefix
+    if (!formatted.startsWith('+')) {
+      formatted = '+254' + formatted;
     }
     
     return formatted;
@@ -68,4 +73,3 @@ const paymentService = {
 };
 
 export default paymentService;
-

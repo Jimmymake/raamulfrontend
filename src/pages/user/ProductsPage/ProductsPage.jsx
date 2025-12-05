@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { useCart } from '../../../context/CartContext';
 import { useNotification } from '../../../context/NotificationContext';
-import { Navbar, LoadingSpinner } from '../../../components/common';
+import { Navbar, LoadingSpinner, ProductImage, getProductImageUrl } from '../../../components/common';
 import productService from '../../../services/productService';
 import './ProductsPage.scss';
 
@@ -193,25 +193,32 @@ const ProductsPage = () => {
 const ProductCard = ({ product, onAddToCart }) => {
   const inStock = product.stock > 0 || product.inStock !== false;
   
-  // Handle both full URLs (from external hosting) and filenames
-  const getImageUrl = (img) => {
-    if (!img) return '/src/images/productimages/img8.jpg';
-    if (img.startsWith('http')) return img; // Already a full URL
-    return `/src/images/productimages/${img}`; // Local image fallback
+  // Get image URL - handles arrays, objects, and strings
+  const getImage = () => {
+    if (product.images && product.images.length > 0) {
+      return getProductImageUrl(product.images[0]);
+    }
+    if (product.image) {
+      return getProductImageUrl(product.image);
+    }
+    return null; // Will use placeholder
   };
-  
-  const imageUrl = getImageUrl(product.images?.[0]);
 
   return (
     <div className="product-card">
-      <div className="product-card__image">
-        <img src={imageUrl} alt={product.name} />
+      <div className="product-card__image-wrapper">
+        <ProductImage 
+          src={getImage()} 
+          alt={product.name}
+          size="medium"
+          className="product-card__product-image"
+        />
         {!inStock && (
           <div className="product-card__out-of-stock">Out of Stock</div>
         )}
-        {product.purity && (
+        {(product.purity || product.badge) && (
           <div className="product-card__badge">
-            {product.purity}
+            {product.purity || product.badge}
           </div>
         )}
       </div>
@@ -220,6 +227,12 @@ const ProductCard = ({ product, onAddToCart }) => {
         <span className="product-card__category">{product.category}</span>
         <h3 className="product-card__name">{product.name}</h3>
         <p className="product-card__desc">{product.description || product.desc}</p>
+        
+        {product.weight && (
+          <div className="product-card__meta">
+            <span className="product-card__weight">📦 {product.weight}</span>
+          </div>
+        )}
         
         <div className="product-card__footer">
           <div className="product-card__price">

@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { useCart } from '../../../context/CartContext';
 import { useNotification } from '../../../context/NotificationContext';
-import { Navbar } from '../../../components/common';
+import { Navbar, ProductImage, getProductImageUrl } from '../../../components/common';
 import orderService from '../../../services/orderService';
 import './CartPage.scss';
 
@@ -21,6 +21,7 @@ const CartPage = () => {
     clearCart,
     getSubtotal,
     getShipping,
+    getTax,
     getTotal 
   } = useCart();
   const { showSuccess, showError } = useNotification();
@@ -47,6 +48,7 @@ const CartPage = () => {
       })),
       pricing: {
         subtotal: getSubtotal(),
+        tax: getTax(),
         shipping: getShipping(),
         total: getTotal()
       },
@@ -62,11 +64,23 @@ const CartPage = () => {
     };
 
     try {
+      console.log('[checkout] Creating order:', orderData);
       const data = await orderService.create(orderData);
+      console.log('[checkout] Order created:', data);
+      
+      // Handle both response structures: {order: {...}} or direct order object
+      const createdOrder = data.order || data;
+      const orderId = createdOrder?.id;
+      
+      if (!orderId) {
+        throw new Error('Failed to get order ID from response');
+      }
+      
       clearCart();
       showSuccess('Order created successfully!');
-      navigate(`/payment/${data.order.id}`);
+      navigate(`/payment/${orderId}`);
     } catch (error) {
+      console.error('[checkout] Error creating order:', error);
       showError(error.message || 'Failed to create order. Please try again.');
     } finally {
       setLoading(false);
@@ -108,12 +122,11 @@ const CartPage = () => {
                 {cartItems.map(item => (
                   <div key={item.id} className="cart-page__item">
                     <div className="cart-page__item-product">
-                      <img 
-                        src={item.images?.[0] 
-                          ? (item.images[0].startsWith('http') ? item.images[0] : `/src/images/productimages/${item.images[0]}`)
-                          : '/src/images/productimages/img8.jpg'
-                        } 
-                        alt={item.name} 
+                      <ProductImage 
+                        src={item.images?.[0] || item.image}
+                        alt={item.name}
+                        size="small"
+                        className="cart-page__item-image"
                       />
                       <div className="cart-page__item-details">
                         <h3>{item.name}</h3>
@@ -181,6 +194,11 @@ const CartPage = () => {
                   <span>KES {getSubtotal().toLocaleString()}</span>
                 </div>
                 
+                <div className="cart-page__summary-row">
+                  <span>VAT (16%)</span>
+                  <span>KES {getTax().toLocaleString()}</span>
+                </div>
+
                 <div className="cart-page__summary-row">
                   <span>Shipping</span>
                   <span>{getShipping() === 0 ? 'FREE' : `KES ${getShipping().toLocaleString()}`}</span>

@@ -106,9 +106,15 @@ export const CartProvider = ({ children }) => {
     return subtotal >= 50000 ? 0 : 5000;
   };
 
-  // Get total
+  // Calculate VAT (16%)
+  const getTax = () => {
+    const subtotal = getSubtotal();
+    return Math.round(subtotal * 0.16);
+  };
+
+  // Get total (subtotal + VAT + shipping)
   const getTotal = () => {
-    return getSubtotal() + getShipping();
+    return getSubtotal() + getTax() + getShipping();
   };
 
   // Check if item is in cart
@@ -132,6 +138,7 @@ export const CartProvider = ({ children }) => {
     getCartCount,
     getSubtotal,
     getShipping,
+    getTax,
     getTotal,
     isInCart,
     getItemQuantity,

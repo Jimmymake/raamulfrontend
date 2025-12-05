@@ -4,6 +4,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { LazyImage, ProductImage } from '../../../components/common';
 import './LandingPage.scss';
 
 // Data
@@ -14,50 +15,82 @@ const stats = [
   { value: '93%', label: 'Max Purity' },
 ];
 
+// Product images - upload PNG files to https://images.cradlevoices.com and update URLs here
 const products = [
   { 
     id: 1, 
-    name: 'Gypsum Rock Lumps', 
-    purity: '89-93%', 
-    desc: 'High-quality natural gypsum for cement & construction', 
-    image: 'https://images.cradlevoices.com/uploads/1764428258_375f2f1602.jpg' 
+    name: 'Bentonite Food Grade', 
+    weight: '50KGS', 
+    desc: 'KEBS certified food-grade bentonite for wine clarification & food processing', 
+    image: 'src/images/productimages/Bentonite.png',
+    badge: 'Food Grade'
   },
   { 
     id: 2, 
-    name: 'Limestone Ore', 
-    purity: '85-90%', 
-    desc: 'Premium limestone for industrial applications', 
-    image: 'https://images.cradlevoices.com/uploads/1764428267_559bd35feb.jpg' 
+    name: 'Gypsum Agri', 
+    weight: '50KGS', 
+    desc: 'A soil amendment combining gypsum and lime to improve soil structure, boost water infiltration, add calcium, and correct soil acidity', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: 'Industrial'
   },
   { 
     id: 3, 
-    name: 'Iron Ore', 
-    purity: '60-65%', 
-    desc: 'Quality iron ore for steel manufacturing', 
-    image: 'https://images.cradlevoices.com/uploads/1764428290_91b632a21a.jpg' 
+    name: 'Limestone (Food Grade & Pharmaceutical Grade)', 
+    weight: '50KGS', 
+    desc: 'High-purity calcium carbonate used in supplements, food processing, antacids, and oral care products for safe human consumption', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: '89-93% Purity'
   },
   { 
     id: 4, 
-    name: 'Bauxite Ore', 
-    purity: '45-50%', 
-    desc: 'Raw bauxite for aluminum production', 
-    image: 'https://images.cradlevoices.com/uploads/1764428331_c303abf974.jpg' 
+    name: 'Limestone & Dolomite (Industrial & Construction Grade)', 
+    weight: '50KGS', 
+    desc: 'Strong, durable minerals used in cement, steel, glass, road construction, and aggregates for major building and infrastructure projects.', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: '90%+ Purity'
   },
   { 
     id: 5, 
-    name: 'Gypsum Powder', 
-    purity: '90%+', 
-    desc: 'Processed gypsum powder for various uses', 
-    image: 'https://images.cradlevoices.com/uploads/1764428343_b749bc8bfa.jpg' 
+    name: 'Raw Gypsum for Cement', 
+    weight: 'Bulk', 
+    desc: 'Natural gypsum used as a setting regulator in cement to control hardening time and improve workability.', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: '85-90% Purity'
   },
   { 
     id: 6, 
-    name: 'Gypsum Wallboards', 
-    purity: 'N/A', 
-    desc: 'Construction-ready gypsum boards', 
-    image: 'https://images.cradlevoices.com/uploads/1764428357_d19bd46880.jpg' 
+    name: 'Powdered Gypsum for Food Industry', 
+    weight: 'Bulk', 
+    desc: 'A safe additive that improves dough strength, aids fermentation, supports cheese and tofu production, and stabilizes food texture.', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: '60-65% Fe'
+  },
+   { 
+    id: 7, 
+    name: 'Pozzolana', 
+    weight: 'Bulk', 
+    desc: 'A volcanic or industrial material that reacts with lime to strengthen concrete, making it durable, economical, and ideal for marine or heavy structures.', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: '60-65% Fe'
+  },
+     { 
+    id: 8, 
+    name: 'Kankar', 
+    weight: 'Bulk', 
+    desc: 'A naturally occurring calcareous material used for road sub-bases, soil improvement, lime production, drainage, and rural construction.', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: '60-65% Fe'
+  },
+     { 
+    id: 9, 
+    name: 'Biochar & Smokeless Briquettes', 
+    weight: 'Bulk', 
+    desc: 'Eco-friendly carbon products that improve soil health, filter water, store carbon, and provide clean-burning fuel for cooking or industry.', 
+    image: 'src/images/productimages/Gypsum.png',
+    badge: '60-65% Fe'
   },
 ];
+
 
 const services = [
   { icon: '⛏️', title: 'Surface Mining', desc: 'Full-fledged surface/stripping mining operations with modern equipment' },
@@ -159,7 +192,12 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section id="home" className="landing__hero">
         <div className="landing__hero-bg">
-          <img src="https://images.cradlevoices.com/uploads/1764428225_4225dc54c1.jpg" alt="Mining" />
+          <LazyImage 
+            src="https://images.cradlevoices.com/uploads/1764917646_c932bcc3f5.jpeg" 
+            alt="Mining"
+            aspectRatio="16/9"
+            className="landing__hero-img"
+          />
         </div>
         <div className="landing__hero-overlay" />
         <div className="landing__hero-glow" />
@@ -256,7 +294,12 @@ const LandingPage = () => {
 
             <div className="landing__about-image">
               <div className="landing__about-image-wrapper">
-                <img src="https://images.cradlevoices.com/uploads/1764428343_b749bc8bfa.jpg" alt="Mineral ore" />
+                <LazyImage 
+                  src="https://images.cradlevoices.com/uploads/1764428343_b749bc8bfa.jpg" 
+                  alt="Mineral ore"
+                  aspectRatio="4/3"
+                  className="landing__about-img"
+                />
                 <div className="landing__about-features">
                   {[
                     'ISO Certified Quality',
@@ -291,12 +334,20 @@ const LandingPage = () => {
             {products.map((product) => (
               <div key={product.id} className="landing__product-card">
                 <div className="landing__product-image">
-                  <img src={product.image} alt={product.name} />
-                  <div className="landing__product-badge">Purity: {product.purity}</div>
+                  <ProductImage 
+                    src={product.image} 
+                    alt={product.name}
+                    size="medium"
+                    className="landing__product-img"
+                  />
+                  <div className="landing__product-badge">{product.badge}</div>
                 </div>
                 <div className="landing__product-content">
                   <h3 className="landing__product-name">{product.name}</h3>
                   <p className="landing__product-desc">{product.desc}</p>
+                  <div className="landing__product-meta">
+                    <span className="landing__product-weight">📦 {product.weight}</span>
+                  </div>
                   <div className="landing__product-footer">
                     <button 
                       className="landing__btn landing__btn--primary landing__btn--small"

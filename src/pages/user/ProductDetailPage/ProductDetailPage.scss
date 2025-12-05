@@ -106,15 +106,30 @@
   &__main-image {
     @include card;
     position: relative;
-    aspect-ratio: 1;
     overflow: hidden;
     margin-bottom: $spacing-lg;
 
-    img {
+    // ProductImage component
+    .product-image {
+      width: 100%;
+      height: 400px;
+      border-radius: $radius-xl;
+
+      @include mobile {
+        height: 300px;
+      }
+    }
+
+    // Legacy img styles
+    img:not(.product-image__img) {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  &__product-image {
+    width: 100%;
   }
 
   &__badge {
@@ -123,19 +138,20 @@
     border-radius: $radius-md;
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
+    z-index: 5;
 
     &--out {
       top: $spacing-lg;
       left: $spacing-lg;
       background: $error;
-      color: $text-primary;
+      color: white;
     }
 
     &--sale {
       top: $spacing-lg;
       right: $spacing-lg;
       background: $success;
-      color: $text-primary;
+      color: white;
     }
   }
 
@@ -482,4 +498,7 @@
     font-weight: $font-weight-bold;
   }
 }
+
+
+
 

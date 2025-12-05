@@ -4,7 +4,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout/AdminLayout';
-import { LoadingSpinner } from '../../../components/common';
+import { LoadingSpinner, ProductImage, getProductImageUrl } from '../../../components/common';
 import { useNotification } from '../../../context/NotificationContext';
 import productService from '../../../services/productService';
 import uploadService from '../../../services/uploadService';
@@ -232,12 +232,11 @@ const AdminProducts = () => {
               {products.map((product) => (
                 <div key={product.id} className="admin-products__table-row">
                   <div className="admin-products__product-info">
-                    <img 
-                      src={product.images?.[0] 
-                        ? uploadService.getImageUrl(product.images[0])
-                        : '/src/images/productimages/img8.jpg'
-                      } 
+                    <ProductImage 
+                      src={product.images?.[0] || product.image}
                       alt={product.name}
+                      size="small"
+                      className="admin-products__product-thumb"
                     />
                     <div>
                       <span className="admin-products__product-name">{product.name}</span>
@@ -416,7 +415,12 @@ const AdminProducts = () => {
                   <div className="admin-products__images">
                     {formData.images.map((img, idx) => (
                       <div key={idx} className="admin-products__image-item">
-                        <img src={uploadService.getImageUrl(img)} alt="" />
+                        <ProductImage 
+                          src={img}
+                          alt={`Product image ${idx + 1}`}
+                          size="small"
+                          showShadow={false}
+                        />
                         <button type="button" onClick={() => handleRemoveImage(idx)}>×</button>
                       </div>
                     ))}
@@ -424,7 +428,7 @@ const AdminProducts = () => {
                       <input 
                         type="file" 
                         multiple 
-                        accept="image/*" 
+                        accept="image/*,.png,.jpg,.jpeg,.gif,.webp" 
                         onChange={handleImageUpload}
                         disabled={uploadingImages}
                       />
@@ -436,7 +440,7 @@ const AdminProducts = () => {
                     </label>
                   </div>
                   <small className="admin-products__upload-hint">
-                    Supports JPEG, PNG, GIF, WebP. Max 10MB per image.
+                    Supports JPEG, PNG (recommended for product bags), GIF, WebP. Max 10MB per image.
                   </small>
                 </div>
 

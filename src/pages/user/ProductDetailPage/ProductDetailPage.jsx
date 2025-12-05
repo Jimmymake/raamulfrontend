@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../../context/CartContext';
 import { useNotification } from '../../../context/NotificationContext';
-import { Navbar, LoadingSpinner } from '../../../components/common';
+import { Navbar, LoadingSpinner, ProductImage, getProductImageUrl } from '../../../components/common';
 import productService from '../../../services/productService';
 import './ProductDetailPage.scss';
 
@@ -64,16 +64,20 @@ const ProductDetailPage = () => {
     
     // Multiple images support
     if (product.images && Array.isArray(product.images) && product.images.length > 0) {
-      return product.images;
+      return product.images.map(img => getProductImageUrl(img));
     }
     
     // Single image
-    if (product.image_url) {
-      return [product.image_url];
+    if (product.image) {
+      return [getProductImageUrl(product.image)];
     }
     
-    // Placeholder
-    return [`https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop`];
+    if (product.image_url) {
+      return [getProductImageUrl(product.image_url)];
+    }
+    
+    // Placeholder - will be handled by ProductImage component
+    return [null];
   };
 
   const images = getImages();
@@ -122,12 +126,11 @@ const ProductDetailPage = () => {
             {/* Gallery */}
             <div className="product-detail__gallery">
               <div className="product-detail__main-image">
-                <img 
+                <ProductImage 
                   src={images[selectedImage]} 
                   alt={product.name}
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop';
-                  }}
+                  size="xlarge"
+                  className="product-detail__product-image"
                 />
                 {product.status === 'out_of_stock' && (
                   <div className="product-detail__badge product-detail__badge--out">Out of Stock</div>
@@ -147,7 +150,12 @@ const ProductDetailPage = () => {
                       className={`product-detail__thumbnail ${selectedImage === idx ? 'product-detail__thumbnail--active' : ''}`}
                       onClick={() => setSelectedImage(idx)}
                     >
-                      <img src={img} alt={`${product.name} view ${idx + 1}`} />
+                      <ProductImage 
+                        src={img} 
+                        alt={`${product.name} view ${idx + 1}`}
+                        size="tiny"
+                        showShadow={false}
+                      />
                     </button>
                   ))}
                 </div>
@@ -317,4 +325,7 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
+
+
+
 
