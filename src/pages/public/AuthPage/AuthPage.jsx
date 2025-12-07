@@ -95,7 +95,7 @@ const AuthPage = () => {
         {/* Logo & Header */}
         <div className="auth__header">
           <Link to="/" className="auth__logo">
-            <img src="/src/images/logo/logo.png" alt="Raamul Logo" />
+            <img src="https://images.cradlevoices.com/uploads/1764428213_6639a919f8.png" alt="Raamul Logo" />
             <div className="auth__logo-text">
               <span className="auth__logo-name">RAAMUL</span>
               <span className="auth__logo-sub">INTERNATIONAL</span>

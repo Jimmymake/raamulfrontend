@@ -19,27 +19,23 @@ const stats = [
 const heroImages = [
   {
     id: 1,
-    src: 'src/images/raamul/img1.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765110754_fe5041952d.jpeg',
     alt: 'Mining Operations'
   },
   {
     id: 2,
-    src: 'src/images/raamul/img2.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765110842_884d8dab51.jpeg',
     alt: 'Mineral Stockpile'
   },
-  // {
-  //   id: 3,
-  //   src: 'src/images/raamul/img3.jpeg',
-  //   alt: 'Surface Mining'
-  // },
+
     {
-    id: 4,
-    src: 'src/images/raamul/img4.jpeg',
+    id: 3,
+    src: 'https://images.cradlevoices.com/uploads/1765110928_b671921bec.jpeg',
     alt: 'Surface Mining'
   },
     {
-    id: 5,
-    src: 'src/images/raamul/img5.jpeg',
+    id: 4,
+    src: 'https://images.cradlevoices.com/uploads/1765110961_5ecbd44a9c.jpeg',
     alt: 'Surface Mining'
   },
 ];
@@ -51,7 +47,7 @@ const products = [
     name: 'Bentonite Food Grade', 
     weight: '50KGS', 
     desc: 'KEBS certified food-grade bentonite for wine clarification & food processing', 
-    image: 'src/images/productimages/Bentonite.png',
+    image: 'https://images.cradlevoices.com/uploads/1765113321_d857120d37.png',
     badge: 'Food Grade'
   },
   { 
@@ -59,7 +55,7 @@ const products = [
     name: 'Gypsum Agri', 
     weight: '50KGS', 
     desc: 'A soil amendment combining gypsum and lime to improve soil structure, boost water infiltration, add calcium, and correct soil acidity', 
-    image: 'src/images/productimages/Gypsum.png',
+    image: 'https://images.cradlevoices.com/uploads/1765113378_47a5c30588.png',
     badge: 'Industrial'
   },
   { 
@@ -67,7 +63,7 @@ const products = [
     name: 'Limestone (Food Grade & Pharmaceutical Grade)', 
     weight: '50KGS', 
     desc: 'High-purity calcium carbonate used in supplements, food processing, antacids, and oral care products for safe human consumption', 
-    image: 'src/images/productimages/Gypsum.png',
+    image: 'https://images.cradlevoices.com/uploads/1765113378_47a5c30588.png',
     badge: '89-93% Purity'
   },
   // { 
@@ -141,37 +137,37 @@ const team = [
 const galleryImages = [
   {
     id: 1,
-    src: 'src/images/raamul/img1.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765113480_c0444b6a32.jpeg',
     title: 'Mining Operations',
     category: 'Operations'
   },
   {
     id: 2,
-    src: 'src/images/raamul/img2.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765113519_afb76281c3.jpeg',
     title: 'Mineral Stockpile',
     category: 'Facilities'
   },
   {
     id: 3,
-    src: 'src/images/raamul/img3.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765113585_13af78c7bf.jpeg',
     title: 'Product Packaging',
     category: 'Products'
   },
   {
     id: 4,
-    src: 'src/images/raamul/img4.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765113635_d49d51c780.jpeg',
     title: 'Surface Mining',
     category: 'Operations'
   },
   {
     id: 5,
-    src: 'src/images/raamul/img5.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765113699_1e3e8e26bc.jpeg',
     title: 'Quality Control',
     category: 'Operations'
   },
   {
     id: 6,
-    src: 'src/images/raamul/img6.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765113866_3ea971359d.jpeg',
     title: 'Transportation',
     category: 'Logistics'
   },
