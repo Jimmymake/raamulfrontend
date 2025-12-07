@@ -111,3 +111,5 @@ const ProductImage = ({
 export { PLACEHOLDER_IMAGE };
 export default ProductImage;
 
+
+

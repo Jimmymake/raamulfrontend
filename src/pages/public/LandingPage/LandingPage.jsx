@@ -15,6 +15,35 @@ const stats = [
   { value: '93%', label: 'Max Purity' },
 ];
 
+// Hero carousel images
+const heroImages = [
+  {
+    id: 1,
+    src: 'src/images/raamul/img1.jpeg',
+    alt: 'Mining Operations'
+  },
+  {
+    id: 2,
+    src: 'src/images/raamul/img2.jpeg',
+    alt: 'Mineral Stockpile'
+  },
+  // {
+  //   id: 3,
+  //   src: 'src/images/raamul/img3.jpeg',
+  //   alt: 'Surface Mining'
+  // },
+    {
+    id: 4,
+    src: 'src/images/raamul/img4.jpeg',
+    alt: 'Surface Mining'
+  },
+    {
+    id: 5,
+    src: 'src/images/raamul/img5.jpeg',
+    alt: 'Surface Mining'
+  },
+];
+
 // Product images - upload PNG files to https://images.cradlevoices.com and update URLs here
 const products = [
   { 
@@ -41,54 +70,54 @@ const products = [
     image: 'src/images/productimages/Gypsum.png',
     badge: '89-93% Purity'
   },
-  { 
-    id: 4, 
-    name: 'Limestone & Dolomite (Industrial & Construction Grade)', 
-    weight: '50KGS', 
-    desc: 'Strong, durable minerals used in cement, steel, glass, road construction, and aggregates for major building and infrastructure projects.', 
-    image: 'src/images/productimages/Gypsum.png',
-    badge: '90%+ Purity'
-  },
-  { 
-    id: 5, 
-    name: 'Raw Gypsum for Cement', 
-    weight: 'Bulk', 
-    desc: 'Natural gypsum used as a setting regulator in cement to control hardening time and improve workability.', 
-    image: 'src/images/productimages/Gypsum.png',
-    badge: '85-90% Purity'
-  },
-  { 
-    id: 6, 
-    name: 'Powdered Gypsum for Food Industry', 
-    weight: 'Bulk', 
-    desc: 'A safe additive that improves dough strength, aids fermentation, supports cheese and tofu production, and stabilizes food texture.', 
-    image: 'src/images/productimages/Gypsum.png',
-    badge: '60-65% Fe'
-  },
-   { 
-    id: 7, 
-    name: 'Pozzolana', 
-    weight: 'Bulk', 
-    desc: 'A volcanic or industrial material that reacts with lime to strengthen concrete, making it durable, economical, and ideal for marine or heavy structures.', 
-    image: 'src/images/productimages/Gypsum.png',
-    badge: '60-65% Fe'
-  },
-     { 
-    id: 8, 
-    name: 'Kankar', 
-    weight: 'Bulk', 
-    desc: 'A naturally occurring calcareous material used for road sub-bases, soil improvement, lime production, drainage, and rural construction.', 
-    image: 'src/images/productimages/Gypsum.png',
-    badge: '60-65% Fe'
-  },
-     { 
-    id: 9, 
-    name: 'Biochar & Smokeless Briquettes', 
-    weight: 'Bulk', 
-    desc: 'Eco-friendly carbon products that improve soil health, filter water, store carbon, and provide clean-burning fuel for cooking or industry.', 
-    image: 'src/images/productimages/Gypsum.png',
-    badge: '60-65% Fe'
-  },
+  // { 
+  //   id: 4, 
+  //   name: 'Limestone & Dolomite (Industrial & Construction Grade)', 
+  //   weight: '50KGS', 
+  //   desc: 'Strong, durable minerals used in cement, steel, glass, road construction, and aggregates for major building and infrastructure projects.', 
+  //   image: 'src/images/productimages/Gypsum.png',
+  //   badge: '90%+ Purity'
+  // },
+  // { 
+  //   id: 5, 
+  //   name: 'Raw Gypsum for Cement', 
+  //   weight: 'Bulk', 
+  //   desc: 'Natural gypsum used as a setting regulator in cement to control hardening time and improve workability.', 
+  //   image: 'src/images/productimages/Gypsum.png',
+  //   badge: '85-90% Purity'
+  // },
+  // { 
+  //   id: 6, 
+  //   name: 'Powdered Gypsum for Food Industry', 
+  //   weight: 'Bulk', 
+  //   desc: 'A safe additive that improves dough strength, aids fermentation, supports cheese and tofu production, and stabilizes food texture.', 
+  //   image: 'src/images/productimages/Gypsum.png',
+  //   badge: '60-65% Fe'
+  // },
+  //  { 
+  //   id: 7, 
+  //   name: 'Pozzolana', 
+  //   weight: 'Bulk', 
+  //   desc: 'A volcanic or industrial material that reacts with lime to strengthen concrete, making it durable, economical, and ideal for marine or heavy structures.', 
+  //   image: 'src/images/productimages/Gypsum.png',
+  //   badge: '60-65% Fe'
+  // },
+  //    { 
+  //   id: 8, 
+  //   name: 'Kankar', 
+  //   weight: 'Bulk', 
+  //   desc: 'A naturally occurring calcareous material used for road sub-bases, soil improvement, lime production, drainage, and rural construction.', 
+  //   image: 'src/images/productimages/Gypsum.png',
+  //   badge: '60-65% Fe'
+  // },
+  //    { 
+  //   id: 9, 
+  //   name: 'Biochar & Smokeless Briquettes', 
+  //   weight: 'Bulk', 
+  //   desc: 'Eco-friendly carbon products that improve soil health, filter water, store carbon, and provide clean-burning fuel for cooking or industry.', 
+  //   image: 'src/images/productimages/Gypsum.png',
+  //   badge: '60-65% Fe'
+  // },
 ];
 
 
@@ -105,19 +134,86 @@ const team = [
   { name: 'Simon Mwania', role: 'Operations & Finance Manager', initials: 'SM' },
   { name: 'Joseph Nzioka', role: 'Plant & Mine Manager', initials: 'JN' },
   { name: 'Charles Mwereza', role: 'Human Resources', initials: 'CM' },
-  { name: 'Njoki Muthuri', role: 'Business Development', initials: 'NM' },
+  // { name: 'Njoki Muthuri', role: 'Business Development', initials: 'NM' },
+];
+
+// Gallery images - add your mining/facility/product images here
+const galleryImages = [
+  {
+    id: 1,
+    src: 'src/images/raamul/img1.jpeg',
+    title: 'Mining Operations',
+    category: 'Operations'
+  },
+  {
+    id: 2,
+    src: 'src/images/raamul/img2.jpeg',
+    title: 'Mineral Stockpile',
+    category: 'Facilities'
+  },
+  {
+    id: 3,
+    src: 'src/images/raamul/img3.jpeg',
+    title: 'Product Packaging',
+    category: 'Products'
+  },
+  {
+    id: 4,
+    src: 'src/images/raamul/img4.jpeg',
+    title: 'Surface Mining',
+    category: 'Operations'
+  },
+  {
+    id: 5,
+    src: 'src/images/raamul/img5.jpeg',
+    title: 'Quality Control',
+    category: 'Operations'
+  },
+  {
+    id: 6,
+    src: 'src/images/raamul/img6.jpeg',
+    title: 'Transportation',
+    category: 'Logistics'
+  },
 ];
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Hero carousel auto-play
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 3000); // Change slide every 1 second
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -138,7 +234,7 @@ const LandingPage = () => {
           </div>
 
           <div className="landing__nav-links">
-            {['Home', 'About', 'Products', 'Services', 'Contact'].map((item) => (
+            {['Home', 'About', 'Products', 'Services', 'Gallery', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
@@ -173,7 +269,7 @@ const LandingPage = () => {
 
         {mobileMenuOpen && (
           <div className="landing__mobile-menu">
-            {['Home', 'About', 'Products', 'Services', 'Contact'].map((item) => (
+            {['Home', 'About', 'Products', 'Services', 'Gallery', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
@@ -190,15 +286,65 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="landing__hero">
-        <div className="landing__hero-bg">
-          <LazyImage 
-            src="https://images.cradlevoices.com/uploads/1764917646_c932bcc3f5.jpeg" 
-            alt="Mining"
-            aspectRatio="16/9"
-            className="landing__hero-img"
-          />
+      <section 
+        id="home" 
+        className="landing__hero"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div 
+          className="landing__hero-carousel"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {heroImages.map((image, index) => (
+            <div
+              key={image.id}
+              className="landing__hero-slide"
+            >
+              <div className="landing__hero-bg">
+                <img 
+                  src={image.src} 
+                  alt={image.alt}
+                  className="landing__hero-img"
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              </div>
+            </div>
+          ))}
         </div>
+        
+        {/* Navigation Buttons */}
+        <button 
+          className="landing__hero-nav landing__hero-nav--prev"
+          onClick={prevSlide}
+          aria-label="Previous slide"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <button 
+          className="landing__hero-nav landing__hero-nav--next"
+          onClick={nextSlide}
+          aria-label="Next slide"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        {/* Dots Indicator */}
+        <div className="landing__hero-dots">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              className={`landing__hero-dot ${index === currentSlide ? 'landing__hero-dot--active' : ''}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
         <div className="landing__hero-overlay" />
         <div className="landing__hero-glow" />
 
@@ -247,13 +393,13 @@ const LandingPage = () => {
             ))}
           </div>
         </div>
-
+{/* 
         <div className="landing__scroll-indicator">
           <span>Scroll to explore</span>
           <div className="landing__scroll-mouse">
             <div className="landing__scroll-wheel" />
           </div>
-        </div>
+        </div> */}
       </section>
 
       {/* About Section */}
@@ -291,6 +437,8 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
+
+
 
             <div className="landing__about-image">
               <div className="landing__about-image-wrapper">
@@ -395,6 +543,96 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Gallery Section */}
+      <section id="gallery" className="landing__gallery">
+        <div className="landing__container">
+          <div className="landing__section-header">
+            <span className="landing__section-label">Gallery</span>
+            <h2 className="landing__section-title">Our Operations & Facilities</h2>
+            <p className="landing__section-desc">
+              Explore our mining operations, facilities, and quality products
+            </p>
+          </div>
+
+          {/* Gallery Filters */}
+          <div className="landing__gallery-filters">
+            {['All', 'Operations', 'Facilities', 'Products', 'Logistics'].map((category) => (
+              <button
+                key={category}
+                className={`landing__gallery-filter ${selectedCategory === category ? 'landing__gallery-filter--active' : ''}`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="landing__gallery-grid">
+            {galleryImages
+              .filter(img => selectedCategory === 'All' || img.category === selectedCategory)
+              .map((image) => (
+                <div
+                  key={image.id}
+                  className="landing__gallery-item"
+                  onClick={() => setSelectedImage(image)}
+                >
+                  <div className="landing__gallery-image-wrapper">
+                    <LazyImage
+                      src={image.src}
+                      alt={image.title}
+                      aspectRatio="4/3"
+                      className="landing__gallery-img"
+                    />
+                    <div className="landing__gallery-overlay">
+                      <div className="landing__gallery-content">
+                        <h4 className="landing__gallery-title">{image.title}</h4>
+                        <span className="landing__gallery-category">{image.category}</span>
+                        <div className="landing__gallery-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="landing__gallery-modal"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="landing__gallery-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button 
+              className="landing__gallery-modal-close"
+              onClick={() => setSelectedImage(null)}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <LazyImage
+              src={selectedImage.src}
+              alt={selectedImage.title}
+              aspectRatio="16/9"
+              className="landing__gallery-modal-img"
+            />
+            <div className="landing__gallery-modal-info">
+              <h3>{selectedImage.title}</h3>
+              <span>{selectedImage.category}</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Team Section */}
       <section className="landing__team">
@@ -513,7 +751,7 @@ const LandingPage = () => {
 
             <div className="landing__footer-links">
               <h4>Quick Links</h4>
-              {['Home', 'About Us', 'Products', 'Services', 'Contact'].map((link, i) => (
+              {['Home', 'About Us', 'Products', 'Services', 'Gallery', 'Contact'].map((link, i) => (
                 <button key={i} onClick={() => scrollToSection(link.toLowerCase().replace(' ', ''))}>
                   {link}
                 </button>
