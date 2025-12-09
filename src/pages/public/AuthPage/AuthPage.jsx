@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { useNotification } from '../../../context/NotificationContext';
+import { Footer } from '../../../components/common';
 import './AuthPage.scss';
 
 const AuthPage = () => {
@@ -286,6 +287,7 @@ const AuthPage = () => {
           By signing up, you agree to our Terms of Service and Privacy Policy
         </p>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -17,12 +17,14 @@
   &__section-label {
     @include section-title;
     display: block;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   }
 
   &__section-title {
     font-size: clamp(28px, 5vw, $font-size-5xl);
     font-weight: $font-weight-bold;
     margin-bottom: $spacing-lg;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
   }
 
   &__section-desc {
@@ -30,6 +32,8 @@
     font-size: $font-size-xl;
     max-width: 600px;
     margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: $font-weight-medium;
   }
 
   &__section-header {
@@ -47,12 +51,16 @@
     right: 0;
     z-index: $z-fixed;
     padding: $spacing-md 0;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all $transition-slow;
 
     &--scrolled {
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.98);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -194,33 +202,44 @@
       border: none;
       color: #ffffff;
       font-size: $font-size-base;
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+      font-weight: $font-weight-semibold;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5), 0 0 20px rgba(37, 99, 235, 0.3);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
       &:hover {
-        box-shadow: 0 6px 30px rgba(37, 99, 235, 0.5);
+        box-shadow: 0 6px 30px rgba(37, 99, 235, 0.6), 0 0 25px rgba(37, 99, 235, 0.4);
         transform: translateY(-2px);
       }
     }
 
     &--outline {
       padding: $spacing-md $spacing-xl;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.7);
       color: #ffffff;
       font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      backdrop-filter: blur(10px);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
       }
     }
 
     &--ghost {
       padding: $spacing-md $spacing-xl;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.5);
       color: #ffffff;
       font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      backdrop-filter: blur(10px);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 
       &:hover {
         background: rgba(255, 255, 255, 0.2);
@@ -243,7 +262,9 @@
   // HERO SECTION
   // ==========================================
   &__hero {
-    min-height: 100vh;
+    height: 80vh;
+    padding-top: 80px; // Space for fixed navbar
+    box-sizing: border-box;
     position: relative;
     display: flex;
     align-items: center;
@@ -418,9 +439,9 @@
     z-index: 3;
     background: linear-gradient(
       135deg,
-      rgba(0, 0, 0, 0.65) 0%,
-      rgba(0, 0, 0, 0.45) 50%,
-      rgba(0, 0, 0, 0.55) 100%
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.7) 100%
     );
     pointer-events: none;
   }
@@ -451,11 +472,12 @@
     align-items: center;
     gap: $spacing-sm;
     padding: $spacing-sm $spacing-lg;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: $radius-full;
     margin-bottom: $spacing-2xl;
     backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   &__hero-badge-dot {
@@ -464,12 +486,15 @@
     background: #60a5fa;
     border-radius: 50%;
     animation: pulse 2s infinite;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
   }
 
   &__hero-badge span:last-child {
     color: #ffffff;
     font-size: $font-size-base;
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-semibold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
   }
 
   &__hero-title {
@@ -478,24 +503,25 @@
     line-height: 1.1;
     margin-bottom: $spacing-2xl;
     color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
 
     &--accent {
       background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+      filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
     }
   }
 
   &__hero-desc {
     font-size: $font-size-xl;
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
     line-height: 1.7;
     margin-bottom: $spacing-3xl;
     max-width: 550px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 0, 0, 0.4);
+    font-weight: $font-weight-medium;
   }
 
   &__hero-actions {
@@ -510,10 +536,11 @@
     grid-template-columns: repeat(4, 1fr);
     gap: $spacing-2xl;
     padding: $spacing-2xl;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
     border-radius: $radius-2xl;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 
     @include mobile {
       grid-template-columns: repeat(2, 1fr);
@@ -530,14 +557,16 @@
     font-weight: $font-weight-bold;
     color: #60a5fa;
     margin-bottom: $spacing-xs;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 15px rgba(96, 165, 250, 0.4);
   }
 
   &__hero-stat-label {
     font-size: $font-size-xs;
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: $font-weight-semibold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
   }
 
   &__scroll-indicator {
@@ -695,36 +724,65 @@
   // ==========================================
   &__products {
     padding: 100px 0;
-    background: linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
+    background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+
+    .landing__section-label {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .landing__section-title {
+      color: #ffffff;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .landing__section-desc {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
   }
 
   &__products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: $spacing-2xl;
+    justify-items: center;
+
+    @include tablet {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: $spacing-xl;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
   }
 
   &__product-card {
     background: $bg-card;
-    border-radius: $radius-3xl;
+    border-radius: 0;
     overflow: hidden;
     border: 1px solid $border-color;
-    transition: all $transition-slow;
+    max-width: 320px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
-    &:hover {
-      transform: translateY(-8px);
-      border-color: $border-color-hover;
-      box-shadow: 0 20px 60px rgba($accent-primary, 0.15);
+    @include mobile {
+      max-width: 100%;
     }
   }
 
   &__product-image {
-    height: 320px; // Increased height for portrait orientation
+    height: 480px; // Enlarged for prominent product display
     position: relative;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding: 0;
+    width: 100%;
     // Gradient background for PNG transparency
     background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
 
@@ -734,78 +792,89 @@
       height: 100%;
       border-radius: 0;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
+      padding: 0 !important;
+      
+      &--medium {
+        padding: 0 !important;
+        height: 100%;
+      }
     }
 
     .product-image__img {
-      width: auto;
-      height: 100%;
-      max-width: 100%;
-      max-height: 300px;
+      width: 100% !important;
+      height: auto;
+      max-width: 100% !important;
+      max-height: 100%;
       object-fit: contain;
-      object-position: center;
-      transition: transform $transition-slow;
+      object-position: top center;
+      display: block;
     }
 
     .landing__product-img,
     .lazy-image {
-      width: auto;
+      width: 100%;
       height: 100%;
       max-width: 100%;
       border-radius: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
     }
 
     img,
     .lazy-image__img {
-      width: auto;
-      height: 100%;
+      width: 100%;
+      height: auto;
       max-width: 100%;
-      max-height: 300px;
+      max-height: 100%;
       object-fit: contain;
-      object-position: center;
-      transition: transform $transition-slow;
-    }
-
-    &:hover .product-image__img,
-    &:hover img,
-    &:hover .lazy-image__img {
-      transform: scale(1.08);
+      object-position: top center;
+      display: block;
     }
   }
 
   &__product-badge {
-    position: absolute;
-    top: $spacing-md;
-    right: $spacing-md;
+    position: relative;
+    top: 0;
+    right: 0;
     background: linear-gradient(135deg, $accent-primary 0%, darken($accent-primary, 10%) 100%);
     color: white;
-    padding: $spacing-xs $spacing-md;
-    border-radius: $radius-full;
+    padding: $spacing-sm $spacing-md;
+    border-radius: 0;
     font-size: $font-size-xs;
     font-weight: $font-weight-bold;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 12px rgba($accent-primary, 0.3);
+    box-shadow: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    border: none;
+    text-align: center;
+    width: 100%;
   }
 
   &__product-content {
-    padding: $spacing-xl $spacing-2xl $spacing-2xl;
+    padding: $spacing-lg $spacing-xl $spacing-xl;
   }
 
   &__product-name {
     font-size: $font-size-lg;
     font-weight: $font-weight-bold;
     margin-bottom: $spacing-sm;
-    color: $text-primary;
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+    letter-spacing: -0.2px;
   }
 
   &__product-desc {
-    color: $text-muted;
+    color: $text-primary;
     font-size: $font-size-sm;
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: $spacing-md;
     min-height: 44px;
+    font-weight: $font-weight-medium;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   &__product-meta {
@@ -819,15 +888,33 @@
 
   &__product-weight {
     font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-    color: $text-secondary;
-    background: rgba($accent-primary, 0.08);
+    font-weight: $font-weight-semibold;
+    color: #000000;
+    background: rgba(255, 255, 255, 0.3);
     padding: $spacing-xs $spacing-sm;
     border-radius: $radius-md;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   &__product-footer {
-    @include flex-between;
+    display: flex;
+    gap: $spacing-md;
+    align-items: center;
+
+    .landing__btn--outline {
+      background: transparent;
+      border: 2px solid $accent-primary;
+      color: $accent-primary;
+      text-shadow: none;
+
+      &:hover {
+        background: rgba($accent-primary, 0.1);
+        border-color: darken($accent-primary, 10%);
+        color: darken($accent-primary, 10%);
+        box-shadow: 0 4px 12px rgba($accent-primary, 0.2);
+      }
+    }
   }
 
   &__product-price {
@@ -841,8 +928,10 @@
     margin-top: $spacing-5xl;
 
     p {
-      color: $text-muted;
+      color: #ffffff;
       margin-bottom: $spacing-lg;
+      font-weight: $font-weight-medium;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -880,8 +969,21 @@
     background: rgba($accent-primary, 0.1);
     border-radius: $radius-2xl;
     @include flex-center;
-    font-size: 32px;
     margin: 0 auto $spacing-2xl;
+    color: $accent-primary;
+    transition: all $transition-normal;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      padding: 12px;
+    }
+  }
+
+  &__service-card:hover &__service-icon {
+    background: rgba($accent-primary, 0.15);
+    transform: scale(1.05);
+    color: darken($accent-primary, 10%);
   }
 
   &__service-title {
@@ -901,7 +1003,22 @@
   // ==========================================
   &__gallery {
     padding: 100px 0;
-    background: $bg-secondary;
+    background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+
+    .landing__section-label {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .landing__section-title {
+      color: #ffffff;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .landing__section-desc {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
   }
 
   &__gallery-filters {
@@ -1186,50 +1303,6 @@
   }
 
   // ==========================================
-  // TEAM SECTION
-  // ==========================================
-  &__team {
-    padding: 100px 0;
-    background: $bg-primary;
-  }
-
-  &__team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: $spacing-xl;
-  }
-
-  &__team-card {
-    background: $bg-card;
-    border-radius: $radius-2xl;
-    padding: 28px 20px;
-    text-align: center;
-    border: 1px solid $border-color;
-  }
-
-  &__team-avatar {
-    width: 64px;
-    height: 64px;
-    background: $accent-gradient;
-    border-radius: 50%;
-    @include flex-center;
-    font-size: $font-size-3xl;
-    font-weight: $font-weight-bold;
-    margin: 0 auto $spacing-lg;
-  }
-
-  &__team-name {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-semibold;
-    margin-bottom: $spacing-xs;
-  }
-
-  &__team-role {
-    color: $accent-primary;
-    font-size: $font-size-sm;
-  }
-
-  // ==========================================
   // CONTACT SECTION
   // ==========================================
   &__contact {
@@ -1339,7 +1412,7 @@
   // ==========================================
   &__footer {
     padding: 60px 0 30px;
-    background: $bg-secondary;
+    background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     border-top: 1px solid $border-color;
   }
 
@@ -1362,50 +1435,72 @@
     .landing__logo {
       margin-bottom: $spacing-xl;
     }
+
+    .landing__logo-name {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .landing__logo-sub {
+      color: rgba(255, 255, 255, 0.8);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+      font-weight: $font-weight-medium;
+    }
   }
 
   &__footer-desc {
-    color: $text-muted;
+    color: rgba(255, 255, 255, 0.9);
     font-size: $font-size-base;
     line-height: 1.7;
     margin-bottom: $spacing-xl;
+    font-weight: $font-weight-medium;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   }
 
   &__footer-quote {
-    color: $accent-primary;
+    color: #60a5fa;
     font-size: $font-size-sm;
     font-style: italic;
+    font-weight: $font-weight-medium;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   }
 
   &__footer-links {
     h4 {
       font-size: $font-size-md;
-      font-weight: $font-weight-semibold;
+      font-weight: $font-weight-bold;
       margin-bottom: $spacing-xl;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      letter-spacing: -0.2px;
     }
 
     button,
     span {
       display: block;
-      color: $text-muted;
+      color: rgba(255, 255, 255, 0.9);
       font-size: $font-size-base;
+      font-weight: $font-weight-medium;
       margin-bottom: $spacing-md;
       background: none;
       border: none;
       text-align: left;
       cursor: pointer;
       transition: color $transition-normal;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 
       &:hover {
-        color: $text-primary;
+        color: #60a5fa;
+        text-shadow: 1px 1px 3px rgba(96, 165, 250, 0.5);
       }
     }
 
     span {
       cursor: default;
+      color: rgba(255, 255, 255, 0.7);
 
       &:hover {
-        color: $text-muted;
+        color: rgba(255, 255, 255, 0.7);
       }
     }
   }
@@ -1413,11 +1508,13 @@
   &__footer-bottom {
     @include flex-between;
     padding-top: $spacing-2xl;
-    border-top: 1px solid $border-color;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 
     p {
-      color: $text-muted;
+      color: rgba(255, 255, 255, 0.8);
       font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
     }
 
     @include mobile {
@@ -1425,6 +1522,42 @@
       gap: $spacing-md;
       text-align: center;
     }
+  }
+}
+
+// ==========================================
+// SCROLL REVEAL ANIMATIONS - Side by Side Popping
+// ==========================================
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.scroll-reveal--visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.scroll-reveal--visible {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 

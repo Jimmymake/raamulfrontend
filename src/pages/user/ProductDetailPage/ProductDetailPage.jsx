@@ -22,6 +22,28 @@ const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
+  const normalizeProduct = (data) => {
+    const prod = data?.product || data?.data || data;
+    return prod || null;
+  };
+
+  // Derived helpers for text fields
+  const getDescriptionText = (p) =>
+    p?.description ||
+    p?.long_description ||
+    p?.product_description ||
+    p?.details ||
+    p?.desc ||
+    p?.meta?.description ||
+    'No description available. Please contact us for more information about this product.';
+
+  const getDetailsText = (p) =>
+    p?.details ||
+    p?.long_description ||
+    p?.product_details ||
+    p?.meta?.details ||
+    '';
+
   useEffect(() => {
     fetchProduct();
   }, [id]);
@@ -30,12 +52,14 @@ const ProductDetailPage = () => {
     setLoading(true);
     try {
       const data = await productService.getById(id);
-      setProduct(data);
+      const prod = normalizeProduct(data);
+      setProduct(prod);
       
       // Fetch related products from same category
-      if (data.category_id) {
-        const related = await productService.getAll({ category_id: data.category_id, limit: 4 });
-        setRelatedProducts((related.products || []).filter(p => p.id !== data.id).slice(0, 4));
+      const categoryId = prod?.category_id || prod?.categoryId || prod?.category?.id;
+      if (categoryId) {
+        const related = await productService.getAll({ category_id: categoryId, limit: 4 });
+        setRelatedProducts((related.products || []).filter(p => p.id !== prod.id).slice(0, 4));
       }
     } catch (error) {
       console.error('Failed to fetch product:', error);
@@ -81,6 +105,10 @@ const ProductDetailPage = () => {
   };
 
   const images = getImages();
+  const descriptionText = getDescriptionText(product);
+  const detailsText = getDetailsText(product);
+  const features = Array.isArray(product?.features) ? product.features : [];
+  const attributes = product?.attributes;
 
   if (loading) {
     return (
@@ -176,28 +204,114 @@ const ProductDetailPage = () => {
 
               <div className="product-detail__pricing">
                 <span className="product-detail__price">
-                  KES {parseFloat(product.price).toLocaleString()}
+                  {product.price && !isNaN(parseFloat(product.price)) ? (
+                    `KES ${parseFloat(product.price).toLocaleString()}`
+                  ) : (
+                    'Request Quote'
+                  )}
                 </span>
-                {product.original_price && product.original_price > product.price && (
+                {product.original_price && product.original_price > product.price && !isNaN(parseFloat(product.original_price)) && (
                   <span className="product-detail__original-price">
                     KES {parseFloat(product.original_price).toLocaleString()}
                   </span>
                 )}
+                {product.unit && (
+                  <span className="product-detail__unit">/{product.unit}</span>
+                )}
               </div>
 
               <div className="product-detail__stock">
-                {product.stock_quantity > 10 ? (
-                  <span className="product-detail__stock--in">✓ In Stock</span>
-                ) : product.stock_quantity > 0 ? (
-                  <span className="product-detail__stock--low">⚠ Only {product.stock_quantity} left</span>
+                {(product.stock_quantity > 0 || product.stock > 0 || product.inStock) ? (
+                  (product.stock_quantity > 10 || product.stock > 10) ? (
+                    <span className="product-detail__stock--in">✓ In Stock</span>
+                  ) : (
+                    <span className="product-detail__stock--low">
+                      ⚠ Only {(product.stock_quantity || product.stock || 0)} left
+                    </span>
+                  )
                 ) : (
                   <span className="product-detail__stock--out">✗ Out of Stock</span>
                 )}
               </div>
 
+              {/* Product Details */}
+              <div className="product-detail__details">
+                <h3>Product Details</h3>
+                {(detailsText || product.weight || product.purity || product.category || product.badge) ? (
+                  <>
+                    {detailsText && (
+                      <p className="product-detail__details-body">{detailsText}</p>
+                    )}
+
+                    <div className="product-detail__details-grid">
+                      {product.weight && (
+                        <div className="product-detail__detail-item">
+                          <span className="product-detail__detail-label">Weight:</span>
+                          <span className="product-detail__detail-value">📦 {product.weight}</span>
+                        </div>
+                      )}
+                      {product.purity && (
+                        <div className="product-detail__detail-item">
+                          <span className="product-detail__detail-label">Purity:</span>
+                          <span className="product-detail__detail-value">{product.purity}</span>
+                        </div>
+                      )}
+                      {product.category && (
+                        <div className="product-detail__detail-item">
+                          <span className="product-detail__detail-label">Category:</span>
+                          <span className="product-detail__detail-value">{product.category}</span>
+                        </div>
+                      )}
+                      {product.badge && (
+                        <div className="product-detail__detail-item">
+                          <span className="product-detail__detail-label">Grade:</span>
+                          <span className="product-detail__detail-value">{product.badge}</span>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <p className="product-detail__details-empty">
+                    No details available. Please contact us for more information about this product.
+                  </p>
+                )}
+
+                {features.length > 0 && (
+                  <div className="product-detail__list">
+                    <h4>Key Features</h4>
+                    <ul>
+                      {features.map((feat, idx) => (
+                        <li key={idx}>{feat}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {attributes && (
+                  <div className="product-detail__list">
+                    <h4>Attributes</h4>
+                    <ul>
+                      {Array.isArray(attributes)
+                        ? attributes.map((attr, idx) => (
+                            <li key={idx}>
+                              <span className="product-detail__attr-key">{attr?.label || attr?.key || 'Attribute'}:</span>
+                              <span className="product-detail__attr-value">{attr?.value || attr?.val || ''}</span>
+                            </li>
+                          ))
+                        : Object.entries(attributes).map(([key, value]) => (
+                            <li key={key}>
+                              <span className="product-detail__attr-key">{key}:</span>
+                              <span className="product-detail__attr-value">{value}</span>
+                            </li>
+                          ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
               <div className="product-detail__description">
                 <h3>Description</h3>
-                <p>{product.description || 'No description available.'}</p>
+                <p>{descriptionText}</p>
               </div>
 
               {/* Specifications */}
@@ -231,11 +345,11 @@ const ProductDetailPage = () => {
                       value={quantity} 
                       onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
                       min="1"
-                      max={product.stock_quantity || 99}
+                      max={product.stock_quantity || product.stock || 99}
                     />
                     <button 
-                      onClick={() => setQuantity(q => Math.min(product.stock_quantity || 99, q + 1))}
-                      disabled={quantity >= (product.stock_quantity || 99)}
+                      onClick={() => setQuantity(q => Math.min(product.stock_quantity || product.stock || 99, q + 1))}
+                      disabled={quantity >= (product.stock_quantity || product.stock || 99)}
                     >
                       +
                     </button>
@@ -246,14 +360,14 @@ const ProductDetailPage = () => {
                   <button 
                     className="product-detail__btn product-detail__btn--cart"
                     onClick={handleAddToCart}
-                    disabled={product.stock_quantity === 0}
+                    disabled={(product.stock_quantity === 0 && product.stock === 0) || (!product.stock_quantity && !product.stock && !product.inStock)}
                   >
                     🛒 Add to Cart
                   </button>
                   <button 
                     className="product-detail__btn product-detail__btn--buy"
                     onClick={handleBuyNow}
-                    disabled={product.stock_quantity === 0}
+                    disabled={(product.stock_quantity === 0 && product.stock === 0) || (!product.stock_quantity && !product.stock && !product.inStock)}
                   >
                     ⚡ Buy Now
                   </button>

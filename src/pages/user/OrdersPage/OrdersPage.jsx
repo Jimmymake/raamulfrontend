@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
-import { Navbar, LoadingSpinner } from '../../../components/common';
+import { Navbar, Footer, LoadingSpinner } from '../../../components/common';
 import orderService from '../../../services/orderService';
 import trackingService from '../../../services/trackingService';
 import './OrdersPage.scss';
@@ -308,11 +308,14 @@ const OrdersPage = () => {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
 
 export default OrdersPage;
+
+
 
 
 

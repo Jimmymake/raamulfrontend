@@ -99,22 +99,19 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Calculate shipping
+  // Calculate shipping (disabled)
   const getShipping = () => {
-    const subtotal = getSubtotal();
-    // Free shipping over 50,000 KES
-    return subtotal >= 50000 ? 0 : 5000;
+    return 0;
   };
 
-  // Calculate VAT (16%)
+  // Calculate VAT (disabled)
   const getTax = () => {
-    const subtotal = getSubtotal();
-    return Math.round(subtotal * 0.16);
+    return 0;
   };
 
-  // Get total (subtotal + VAT + shipping)
+  // Get total (subtotal only, no VAT or shipping)
   const getTotal = () => {
-    return getSubtotal() + getTax() + getShipping();
+    return getSubtotal();
   };
 
   // Check if item is in cart

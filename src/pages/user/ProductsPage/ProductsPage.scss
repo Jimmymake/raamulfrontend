@@ -7,6 +7,8 @@
 .products-page {
   min-height: 100vh;
   background: $bg-primary;
+  display: flex;
+  flex-direction: column;
 
   &__main {
     padding-top: $navbar-height + 20px;
@@ -332,6 +334,7 @@
   &__footer {
     @include flex-between;
     gap: $spacing-md;
+    align-items: flex-start;
   }
 
   &__price {
@@ -364,6 +367,21 @@
         box-shadow: none;
       }
     }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  &__btn--secondary {
+    @include button-outline;
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-sm;
+    text-decoration: none;
+    text-align: center;
   }
 }
 

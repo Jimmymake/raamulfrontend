@@ -7,6 +7,8 @@
 .payment-page {
   min-height: 100vh;
   background: $bg-primary;
+  display: flex;
+  flex-direction: column;
 
   &__main {
     padding-top: $navbar-height + 20px;
@@ -171,6 +173,22 @@
     animation: pulse 2s infinite;
   }
 
+  &__auto-check {
+    color: $accent-primary;
+    font-size: $font-size-sm;
+    margin-top: -$spacing-lg;
+    margin-bottom: $spacing-xl;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+
+    &::before {
+      content: '⏳';
+      animation: pulse 2s infinite;
+    }
+  }
+
   &__check-btn {
     @include button-primary;
     width: 100%;
@@ -305,6 +323,8 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+
+
 
 
 

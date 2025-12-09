@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { useCart } from '../../../context/CartContext';
 import { useNotification } from '../../../context/NotificationContext';
-import { Navbar, ProductImage, getProductImageUrl } from '../../../components/common';
+import { Navbar, Footer, ProductImage, getProductImageUrl } from '../../../components/common';
 import orderService from '../../../services/orderService';
 import './CartPage.scss';
 
@@ -48,9 +48,9 @@ const CartPage = () => {
       })),
       pricing: {
         subtotal: getSubtotal(),
-        tax: getTax(),
-        shipping: getShipping(),
-        total: getTotal()
+        tax: 0,
+        shipping: 0,
+        total: getSubtotal()
       },
       shipping: {
         address: user?.location || '',
@@ -194,22 +194,6 @@ const CartPage = () => {
                   <span>KES {getSubtotal().toLocaleString()}</span>
                 </div>
                 
-                <div className="cart-page__summary-row">
-                  <span>VAT (16%)</span>
-                  <span>KES {getTax().toLocaleString()}</span>
-                </div>
-
-                <div className="cart-page__summary-row">
-                  <span>Shipping</span>
-                  <span>{getShipping() === 0 ? 'FREE' : `KES ${getShipping().toLocaleString()}`}</span>
-                </div>
-
-                {getShipping() > 0 && (
-                  <div className="cart-page__shipping-note">
-                    Add KES {(50000 - getSubtotal()).toLocaleString()} more for free shipping
-                  </div>
-                )}
-                
                 <div className="cart-page__summary-divider" />
                 
                 <div className="cart-page__summary-row cart-page__summary-row--total">
@@ -237,6 +221,7 @@ const CartPage = () => {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

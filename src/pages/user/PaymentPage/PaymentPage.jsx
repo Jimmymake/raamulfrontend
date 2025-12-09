@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { useNotification } from '../../../context/NotificationContext';
-import { Navbar, LoadingSpinner } from '../../../components/common';
+import { Navbar, Footer, LoadingSpinner } from '../../../components/common';
 import orderService from '../../../services/orderService';
 import paymentService from '../../../services/paymentService';
 import './PaymentPage.scss';
@@ -28,6 +28,42 @@ const PaymentPage = () => {
   useEffect(() => {
     fetchOrder();
   }, [orderId]);
+
+  // Auto-poll payment status when payment is initiated
+  useEffect(() => {
+    if (!paymentInitiated || !order?.order_id) return;
+
+    const pollInterval = setInterval(async () => {
+      try {
+        // Fetch latest order status (updated by callback)
+        const data = await orderService.getById(orderId);
+        const orderData = data.order || data;
+        
+        if (orderData) {
+          const payment = parseJsonField(orderData?.payment);
+          const paymentStatus = payment?.payment_status || payment?.status;
+          
+          if (paymentStatus === 'completed' || paymentStatus === 'success') {
+            clearInterval(pollInterval);
+            showSuccess('Payment successful! Thank you for your order.');
+            setTimeout(() => {
+              navigate('/orders');
+            }, 2000);
+          } else if (paymentStatus === 'failed' || paymentStatus === 'cancelled') {
+            clearInterval(pollInterval);
+            showError('Payment failed. Please try again.');
+            setPaymentInitiated(false);
+          }
+        }
+      } catch (error) {
+        console.error('[PaymentPage] Error polling payment status:', error);
+        // Don't show error to user, just log it
+      }
+    }, 3000); // Poll every 3 seconds
+
+    // Cleanup interval on unmount or when paymentInitiated changes
+    return () => clearInterval(pollInterval);
+  }, [paymentInitiated, order?.order_id, orderId, navigate, showSuccess, showError]);
 
   const fetchOrder = async () => {
     try {
@@ -207,10 +243,18 @@ const PaymentPage = () => {
                     <br />
                     Enter your M-Pesa PIN to complete the payment.
                   </p>
+                  <p className="payment-page__auto-check">
+                    <small>We're automatically checking your payment status...</small>
+                  </p>
 
                   <button 
                     className="payment-page__check-btn"
-                    onClick={checkPaymentStatus}
+                    onClick={async () => {
+                      // Immediately check payment status
+                      await checkPaymentStatus();
+                      // Also refresh order to get latest status
+                      await fetchOrder();
+                    }}
                     disabled={checkingPayment}
                   >
                     {checkingPayment ? 'Checking...' : "I've Completed Payment"}
@@ -260,14 +304,6 @@ const PaymentPage = () => {
                   <span>Subtotal</span>
                   <span>KES {pricing.subtotal?.toLocaleString() || 0}</span>
                 </div>
-                <div className="payment-page__pricing-row">
-                  <span>VAT (16%)</span>
-                  <span>KES {pricing.tax?.toLocaleString() || 0}</span>
-                </div>
-                <div className="payment-page__pricing-row">
-                  <span>Shipping</span>
-                  <span>{pricing.shipping === 0 ? 'FREE' : `KES ${pricing.shipping?.toLocaleString() || 0}`}</span>
-                </div>
               </div>
 
               <div className="payment-page__divider" />
@@ -280,6 +316,7 @@ const PaymentPage = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

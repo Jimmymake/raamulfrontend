@@ -46,24 +46,24 @@ const products = [
     id: 1, 
     name: 'Bentonite Food Grade', 
     weight: '50KGS', 
-    desc: 'KEBS certified food-grade bentonite for wine clarification & food processing', 
-    image: 'https://images.cradlevoices.com/uploads/1765113321_d857120d37.png',
+    desc: 'A highly purified, safe natural clay used in the food and beverage industry. It removes impurities, clarifies juices and oils, binds toxins, and supports digestive health. Ideal for beverage filtration, food processing, and detox applications.', 
+    image: 'src/images/bags/19.png',
     badge: 'Food Grade'
   },
   { 
     id: 2, 
     name: 'Gypsum Agri', 
     weight: '50KGS', 
-    desc: 'A soil amendment combining gypsum and lime to improve soil structure, boost water infiltration, add calcium, and correct soil acidity', 
-    image: 'https://images.cradlevoices.com/uploads/1765113378_47a5c30588.png',
+    desc: 'A natural soil conditioner that improves soil structure, enhances water infiltration, reduces compaction, and supplies essential calcium and sulfur to support healthier, stronger crops. Ideal for restoring depleted or hard soils.', 
+    image: 'src/images/bags/18.png',
     badge: 'Industrial'
   },
   { 
     id: 3, 
-    name: 'Limestone (Food Grade & Pharmaceutical Grade)', 
+    name: 'Lime Agri', 
     weight: '50KGS', 
-    desc: 'High-purity calcium carbonate used in supplements, food processing, antacids, and oral care products for safe human consumption', 
-    image: 'https://images.cradlevoices.com/uploads/1765113378_47a5c30588.png',
+    desc: 'A soil amendment used to reduce soil acidity, improve pH balance, and increase nutrient availability. It boosts soil health, enhances fertilizer efficiency, and supports stronger crop growth.',
+    image: 'src/images/bags/20.png',
     badge: '89-93% Purity'
   },
   // { 
@@ -117,20 +117,98 @@ const products = [
 ];
 
 
-const services = [
-  { icon: '⛏️', title: 'Surface Mining', desc: 'Full-fledged surface/stripping mining operations with modern equipment' },
-  { icon: '🔬', title: 'Quality Testing', desc: 'Thorough testing of deposit sites to ensure ore meets industry standards' },
-  { icon: '🚛', title: 'Logistics', desc: 'Efficient loading and transportation from our Konza stockpile site' },
-  { icon: '📦', title: 'Bulk Supply', desc: 'Large-scale supply for cement factories and construction companies' },
-];
+// Service icons as SVG components
+const ServiceIcons = {
+  mining: (
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Excavator/Bulldozer */}
+      <rect x="2" y="12" width="14" height="6" rx="1" fill="currentColor" opacity="0.2" />
+      <rect x="2" y="12" width="14" height="6" rx="1" stroke="currentColor" />
+      <rect x="4" y="14" width="10" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+      {/* Bucket/Arm */}
+      <path d="M16 14l4-2v4l-4 2v-4z" fill="currentColor" opacity="0.2" />
+      <path d="M16 14l4-2v4l-4 2v-4z" stroke="currentColor" />
+      {/* Wheels */}
+      <circle cx="6" cy="18" r="2" fill="currentColor" opacity="0.3" />
+      <circle cx="6" cy="18" r="2" stroke="currentColor" />
+      <circle cx="12" cy="18" r="2" fill="currentColor" opacity="0.3" />
+      <circle cx="12" cy="18" r="2" stroke="currentColor" />
+      {/* Ground/Mining */}
+      <path d="M2 18h20" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+      <path d="M3 20h4M9 20h4M15 20h4" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
+    </svg>
+  ),
+  testing: (
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Microscope */}
+      <path d="M9 21h6" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 21v-4" stroke="currentColor" strokeWidth="2" />
+      <path d="M8 17h8" stroke="currentColor" strokeWidth="2" />
+      {/* Stand */}
+      <path d="M10 13l-2-2a3 3 0 0 1 0-4.24l2-2" stroke="currentColor" />
+      <path d="M14 13l2-2a3 3 0 0 0 0-4.24l-2-2" stroke="currentColor" />
+      {/* Lens */}
+      <circle cx="12" cy="7" r="3" fill="currentColor" opacity="0.1" />
+      <circle cx="12" cy="7" r="3" stroke="currentColor" />
+      <circle cx="12" cy="7" r="1.5" fill="currentColor" opacity="0.3" />
+      {/* Test tube */}
+      <rect x="18" y="4" width="2" height="6" rx="1" fill="currentColor" opacity="0.2" />
+      <rect x="18" y="4" width="2" height="6" rx="1" stroke="currentColor" />
+      <path d="M19 6h0" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  ),
+  logistics: (
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Truck body */}
+      <rect x="2" y="8" width="16" height="8" rx="1" fill="currentColor" opacity="0.15" />
+      <rect x="2" y="8" width="16" height="8" rx="1" stroke="currentColor" />
+      {/* Truck cabin */}
+      <rect x="2" y="8" width="6" height="6" rx="0.5" fill="currentColor" opacity="0.2" />
+      <rect x="2" y="8" width="6" height="6" rx="0.5" stroke="currentColor" />
+      {/* Windows */}
+      <rect x="3" y="9.5" width="4" height="2" rx="0.3" fill="currentColor" opacity="0.3" />
+      {/* Cargo area */}
+      <rect x="8" y="9" width="8" height="6" rx="0.5" fill="currentColor" opacity="0.1" />
+      <rect x="8" y="9" width="8" height="6" rx="0.5" stroke="currentColor" />
+      {/* Cargo lines */}
+      <path d="M10 11h4M10 13h4M10 15h4" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      {/* Wheels */}
+      <circle cx="6" cy="18" r="2.5" fill="currentColor" opacity="0.2" />
+      <circle cx="6" cy="18" r="2.5" stroke="currentColor" />
+      <circle cx="6" cy="18" r="1.2" fill="currentColor" opacity="0.4" />
+      <circle cx="14" cy="18" r="2.5" fill="currentColor" opacity="0.2" />
+      <circle cx="14" cy="18" r="2.5" stroke="currentColor" />
+      <circle cx="14" cy="18" r="1.2" fill="currentColor" opacity="0.4" />
+      {/* Road */}
+      <path d="M1 20h22" stroke="currentColor" strokeWidth="2" opacity="0.2" />
+    </svg>
+  ),
+  supply: (
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Stacked boxes/crates */}
+      <rect x="4" y="12" width="8" height="8" rx="1" fill="currentColor" opacity="0.15" />
+      <rect x="4" y="12" width="8" height="8" rx="1" stroke="currentColor" />
+      <path d="M6 14h4M6 16h4M6 18h4" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      
+      <rect x="12" y="8" width="8" height="8" rx="1" fill="currentColor" opacity="0.2" />
+      <rect x="12" y="8" width="8" height="8" rx="1" stroke="currentColor" />
+      <path d="M14 10h4M14 12h4M14 14h4" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
+      
+      {/* Arrow/flow indicator */}
+      <path d="M8 10l2-2 2 2" stroke="currentColor" strokeWidth="1.5" fill="none" />
+      <path d="M10 8v4" stroke="currentColor" strokeWidth="1.5" />
+      {/* Warehouse building */}
+      <rect x="2" y="20" width="20" height="2" fill="currentColor" opacity="0.3" />
+      <path d="M7 20v-8M17 20v-8" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+    </svg>
+  ),
+};
 
-const team = [
-  { name: 'John Mutuku Mbindyo', role: 'Chairman', initials: 'JM' },
-  { name: 'Cosmas Ndeti', role: 'Field Manager', initials: 'CN' },
-  { name: 'Simon Mwania', role: 'Operations & Finance Manager', initials: 'SM' },
-  { name: 'Joseph Nzioka', role: 'Plant & Mine Manager', initials: 'JN' },
-  { name: 'Charles Mwereza', role: 'Human Resources', initials: 'CM' },
-  // { name: 'Njoki Muthuri', role: 'Business Development', initials: 'NM' },
+const services = [
+  { icon: ServiceIcons.mining, title: 'Surface Mining', desc: 'Full-fledged surface/stripping mining operations with modern equipment' },
+  { icon: ServiceIcons.testing, title: 'Quality Testing', desc: 'Thorough testing of deposit sites to ensure ore meets industry standards' },
+  { icon: ServiceIcons.logistics, title: 'Logistics', desc: 'Efficient loading and transportation from our Konza stockpile site' },
+  { icon: ServiceIcons.supply, title: 'Bulk Supply', desc: 'Large-scale supply for cement factories and construction companies' },
 ];
 
 // Gallery images - add your mining/facility/product images here
@@ -165,6 +243,7 @@ const galleryImages = [
     title: 'Quality Control',
     category: 'Operations'
   },
+
   {
     id: 6,
     src: 'https://images.cradlevoices.com/uploads/1765113866_3ea971359d.jpeg',
@@ -199,6 +278,42 @@ const LandingPage = () => {
     return () => clearInterval(interval);
   }, [isPaused]);
 
+  // Scroll animation effect - side by side popping
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Add delay based on index for staggered effect
+          setTimeout(() => {
+            entry.target.classList.add('scroll-reveal--visible');
+          }, index * 200); // 200ms delay between each element
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right');
+    elements.forEach((el) => observer.observe(el));
+
+    // Trigger animations for elements already visible (navbar, hero)
+    setTimeout(() => {
+      const visibleElements = document.querySelectorAll('.landing__nav .scroll-reveal, .landing__nav .scroll-reveal-left, .landing__nav .scroll-reveal-right, .landing__hero .scroll-reveal, .landing__hero .scroll-reveal-left, .landing__hero .scroll-reveal-right');
+      visibleElements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('scroll-reveal--visible');
+        }, index * 150);
+      });
+    }, 200);
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
@@ -221,7 +336,7 @@ const LandingPage = () => {
       {/* Navigation */}
       <nav className={`landing__nav ${isScrolled ? 'landing__nav--scrolled' : ''}`}>
         <div className="landing__nav-container">
-          <div className="landing__logo">
+          <div className="landing__logo scroll-reveal-left">
             <img src="https://images.cradlevoices.com/uploads/1764428213_6639a919f8.png" alt="Raamul Logo" />
             <div className="landing__logo-text">
               <span className="landing__logo-name">RAAMUL</span>
@@ -230,18 +345,18 @@ const LandingPage = () => {
           </div>
 
           <div className="landing__nav-links">
-            {['Home', 'About', 'Products', 'Services', 'Gallery', 'Contact'].map((item) => (
+            {['Home', 'About', 'Products', 'Services', 'Gallery', 'Contact'].map((item, index) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className="landing__nav-link"
+                className={`landing__nav-link scroll-reveal ${index % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
               >
                 {item}
               </button>
             ))}
           </div>
 
-          <div className="landing__nav-actions">
+          <div className="landing__nav-actions scroll-reveal-right">
             <button 
               onClick={() => scrollToSection('products')}
               className="landing__btn landing__btn--outline"
@@ -345,26 +460,25 @@ const LandingPage = () => {
         <div className="landing__hero-glow" />
 
         <div className="landing__hero-content">
-          <div className="landing__hero-badge">
+          <div className="landing__hero-badge scroll-reveal-left">
             <span className="landing__hero-badge-dot" />
             <span>Kenya's Leading Mineral Supplier</span>
           </div>
 
-          <h1 className="landing__hero-title">
+          <h1 className="landing__hero-title scroll-reveal-right">
             Industrial Minerals
             <br />
             <span className="landing__hero-title--accent">Powering Progress</span>
           </h1>
 
-          <p className="landing__hero-desc">
-            Surface mining and supply of premium quality gypsum, limestone, iron ore, and bauxite. 
-            Serving cement factories and construction industries across East Africa.
+          <p className="landing__hero-desc scroll-reveal-left">
+          Transforming agriculture, construction, and industry with high-quality, earth-derived products built for performance and long-term impact.
           </p>
 
           <div className="landing__hero-actions">
             <button 
               onClick={() => scrollToSection('products')}
-              className="landing__btn landing__btn--primary landing__btn--large"
+              className="landing__btn landing__btn--primary landing__btn--large scroll-reveal-left"
             >
               Explore Products
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -374,15 +488,18 @@ const LandingPage = () => {
             </button>
             <button 
               onClick={() => scrollToSection('about')}
-              className="landing__btn landing__btn--ghost landing__btn--large"
+              className="landing__btn landing__btn--ghost landing__btn--large scroll-reveal-right"
             >
               Learn More
             </button>
           </div>
 
-          <div className="landing__hero-stats">
+          <div className="landing__hero-stats scroll-reveal">
             {stats.map((stat, i) => (
-              <div key={i} className="landing__hero-stat">
+              <div 
+                key={i} 
+                className={`landing__hero-stat ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+              >
                 <span className="landing__hero-stat-value">{stat.value}</span>
                 <span className="landing__hero-stat-label">{stat.label}</span>
               </div>
@@ -399,32 +516,31 @@ const LandingPage = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="landing__about">
+      <section id="about" className="landing__about scroll-reveal">
         <div className="landing__container">
           <div className="landing__about-grid">
-            <div className="landing__about-content">
-              <span className="landing__section-label">About Us</span>
-              <h2 className="landing__section-title">
-                Pioneering Surface Mining in Kenya
+            <div className="landing__about-content scroll-reveal-left">
+              <span className="landing__section-label scroll-reveal-left">About Us</span>
+              <h2 className="landing__section-title scroll-reveal-left">
+              Delivering Natural Solutions for Agriculture, Industry & Environmental Sustainability
               </h2>
-              <p className="landing__about-text">
-                <strong>Raamul International Limited</strong> is principally engaged in surface/stripping mining 
-                and trading in gypsum natural rock lumps within the Republic of Kenya.
+              <p className="landing__about-text scroll-reveal-left">
+                <strong>Raamul International Limited</strong> we are committed to providing high-quality, naturally sourced industrial, agricultural, and environmental materials that support sustainable development, healthy soils, strong infrastructure, and safe consumer products.
               </p>
-              <p className="landing__about-text">
+              <p className="landing__about-text scroll-reveal-left">
                 Our company has over 7,000 acres of proven gypsum reserves at Konza, Machakos County. 
                 The previous operator was the biggest exclusive supplier to LaFarge Bamburi for over 10 years.
               </p>
 
               <div className="landing__about-cards">
-                <div className="landing__about-card landing__about-card--mission">
+                <div className={`landing__about-card landing__about-card--mission scroll-reveal-left`}>
                   <h4>Our Mission</h4>
                   <p>
                     To strengthen our commitment towards clients, society and the environment while contributing 
                     to the development of industrial building materials.
                   </p>
                 </div>
-                <div className="landing__about-card landing__about-card--vision">
+                <div className={`landing__about-card landing__about-card--vision scroll-reveal-right`}>
                   <h4>Our Vision</h4>
                   <p>
                     To be the pioneer surface mining operation and supplier of industrial mineral materials that 
@@ -436,7 +552,7 @@ const LandingPage = () => {
 
 
 
-            <div className="landing__about-image">
+            {/* <div className="landing__about-image scroll-reveal-right">
               <div className="landing__about-image-wrapper">
                 <LazyImage 
                   src="https://images.cradlevoices.com/uploads/1764428343_b749bc8bfa.jpg" 
@@ -451,32 +567,39 @@ const LandingPage = () => {
                     'Advanced Technology',
                     '24/7 Operations',
                   ].map((item, i) => (
-                    <div key={i} className="landing__about-feature">
+                    <div 
+                      key={i} 
+                      className={`landing__about-feature ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+                    >
                       <div className="landing__about-feature-icon">✓</div>
                       <span>{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* Products Section */}
-      <section id="products" className="landing__products">
+      <section id="products" className="landing__products scroll-reveal">
         <div className="landing__container">
           <div className="landing__section-header">
-            <span className="landing__section-label">Our Products</span>
-            <h2 className="landing__section-title">Industrial Mineral Materials</h2>
-            <p className="landing__section-desc">
+            <span className="landing__section-label scroll-reveal-left">Our Products</span>
+            <h2 className="landing__section-title scroll-reveal-right">Industrial Mineral Materials</h2>
+            <p className="landing__section-desc scroll-reveal-left">
               Premium quality minerals sourced from our Konza mine for cement factories and construction industries
             </p>
           </div>
 
           <div className="landing__products-grid">
-            {products.map((product) => (
-              <div key={product.id} className="landing__product-card">
+            {products.map((product, index) => (
+              <div 
+                key={product.id} 
+                className={`landing__product-card ${index % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+              >
+                <div className="landing__product-badge">{product.badge}</div>
                 <div className="landing__product-image">
                   <ProductImage 
                     src={product.image} 
@@ -484,7 +607,6 @@ const LandingPage = () => {
                     size="medium"
                     className="landing__product-img"
                   />
-                  <div className="landing__product-badge">{product.badge}</div>
                 </div>
                 <div className="landing__product-content">
                   <h3 className="landing__product-name">{product.name}</h3>
@@ -499,17 +621,23 @@ const LandingPage = () => {
                     >
                       Shop Now
                     </button>
+                    {/* <button 
+                      className="landing__btn landing__btn--outline landing__btn--small"
+                      onClick={() => navigate(`/products/${product.id}`)}
+                    >
+                      More
+                    </button> */}
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="landing__products-cta">
-            <p>Need bulk quantities or custom specifications?</p>
+          <div className="landing__products-cta scroll-reveal-right">
+            <p className="scroll-reveal-left">Need bulk quantities or custom specifications?</p>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="landing__btn landing__btn--outline"
+              className="landing__btn landing__btn--outline scroll-reveal-right"
             >
               Request Custom Quote →
             </button>
@@ -518,19 +646,22 @@ const LandingPage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="landing__services">
+      <section id="services" className="landing__services scroll-reveal">
         <div className="landing__container">
           <div className="landing__section-header">
-            <span className="landing__section-label">Our Services</span>
-            <h2 className="landing__section-title">End-to-End Mining Solutions</h2>
-            <p className="landing__section-desc">
+            <span className="landing__section-label scroll-reveal-left">Our Services</span>
+            <h2 className="landing__section-title scroll-reveal-right">End-to-End Mining Solutions</h2>
+            <p className="landing__section-desc scroll-reveal-left">
               From extraction to delivery, we handle every aspect of mineral supply
             </p>
           </div>
 
           <div className="landing__services-grid">
             {services.map((service, i) => (
-              <div key={i} className="landing__service-card">
+              <div 
+                key={i} 
+                className={`landing__service-card ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+              >
                 <div className="landing__service-icon">{service.icon}</div>
                 <h3 className="landing__service-title">{service.title}</h3>
                 <p className="landing__service-desc">{service.desc}</p>
@@ -541,22 +672,22 @@ const LandingPage = () => {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="landing__gallery">
+      <section id="gallery" className="landing__gallery scroll-reveal">
         <div className="landing__container">
           <div className="landing__section-header">
-            <span className="landing__section-label">Gallery</span>
-            <h2 className="landing__section-title">Our Operations & Facilities</h2>
-            <p className="landing__section-desc">
+            <span className="landing__section-label scroll-reveal-left">Gallery</span>
+            <h2 className="landing__section-title scroll-reveal-right">Our Operations & Facilities</h2>
+            <p className="landing__section-desc scroll-reveal-left">
               Explore our mining operations, facilities, and quality products
             </p>
           </div>
 
           {/* Gallery Filters */}
           <div className="landing__gallery-filters">
-            {['All', 'Operations', 'Facilities', 'Products', 'Logistics'].map((category) => (
+            {['All', 'Operations', 'Facilities', 'Products', 'Logistics'].map((category, index) => (
               <button
                 key={category}
-                className={`landing__gallery-filter ${selectedCategory === category ? 'landing__gallery-filter--active' : ''}`}
+                className={`landing__gallery-filter scroll-reveal ${index % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'} ${selectedCategory === category ? 'landing__gallery-filter--active' : ''}`}
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}
@@ -568,10 +699,10 @@ const LandingPage = () => {
           <div className="landing__gallery-grid">
             {galleryImages
               .filter(img => selectedCategory === 'All' || img.category === selectedCategory)
-              .map((image) => (
+              .map((image, index) => (
                 <div
                   key={image.id}
-                  className="landing__gallery-item"
+                  className={`landing__gallery-item ${index % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
                   onClick={() => setSelectedImage(image)}
                 >
                   <div className="landing__gallery-image-wrapper">
@@ -630,40 +761,20 @@ const LandingPage = () => {
         </div>
       )}
 
-      {/* Team Section */}
-      <section className="landing__team">
-        <div className="landing__container">
-          <div className="landing__section-header">
-            <span className="landing__section-label">Leadership</span>
-            <h2 className="landing__section-title">Senior Management Team</h2>
-          </div>
-
-          <div className="landing__team-grid">
-            {team.map((member, i) => (
-              <div key={i} className="landing__team-card">
-                <div className="landing__team-avatar">{member.initials}</div>
-                <h4 className="landing__team-name">{member.name}</h4>
-                <span className="landing__team-role">{member.role}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section */}
-      <section id="contact" className="landing__contact">
+      <section id="contact" className="landing__contact scroll-reveal">
         <div className="landing__container">
           <div className="landing__contact-grid">
-            <div className="landing__contact-info">
-              <span className="landing__section-label">Contact Us</span>
-              <h2 className="landing__section-title">Let's Discuss Your Requirements</h2>
-              <p className="landing__contact-desc">
+            <div className="landing__contact-info scroll-reveal-left">
+              <span className="landing__section-label scroll-reveal-left">Contact Us</span>
+              <h2 className="landing__section-title scroll-reveal-left">Let's Discuss Your Requirements</h2>
+              <p className="landing__contact-desc scroll-reveal-left">
                 Whether you need bulk mineral supplies or have questions about our products, 
                 our team is ready to assist you.
               </p>
 
               <div className="landing__contact-details">
-                <div className="landing__contact-item">
+                <div className={`landing__contact-item scroll-reveal-left`}>
                   <div className="landing__contact-icon">📍</div>
                   <div>
                     <span className="landing__contact-label">Office Address</span>
@@ -673,21 +784,21 @@ const LandingPage = () => {
                     </span>
                   </div>
                 </div>
-                <div className="landing__contact-item">
+                <div className={`landing__contact-item scroll-reveal-right`}>
                   <div className="landing__contact-icon">📍</div>
                   <div>
                     <span className="landing__contact-label">Stockpile Site</span>
                     <span className="landing__contact-value">Konza, Machakos County</span>
                   </div>
                 </div>
-                <div className="landing__contact-item">
+                <div className={`landing__contact-item scroll-reveal-left`}>
                   <div className="landing__contact-icon">📞</div>
                   <div>
                     <span className="landing__contact-label">Phone</span>
                     <span className="landing__contact-value">+254 739 567 904</span>
                   </div>
                 </div>
-                <div className="landing__contact-item">
+                <div className={`landing__contact-item scroll-reveal-right`}>
                   <div className="landing__contact-icon">✉️</div>
                   <div>
                     <span className="landing__contact-label">Email</span>
@@ -697,16 +808,16 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div className="landing__contact-form-wrapper">
-              <h3>Request a Quote</h3>
+            <div className="landing__contact-form-wrapper scroll-reveal-right">
+              <h3 className="scroll-reveal-right">Request a Quote</h3>
               <form className="landing__contact-form">
                 <div className="landing__form-row">
-                  <input type="text" placeholder="Your Name" />
-                  <input type="text" placeholder="Company Name" />
+                  <input type="text" placeholder="Your Name" className="scroll-reveal-left" />
+                  <input type="text" placeholder="Company Name" className="scroll-reveal-right" />
                 </div>
-                <input type="email" placeholder="Email Address" />
-                <input type="tel" placeholder="Phone Number" />
-                <select defaultValue="">
+                <input type="email" placeholder="Email Address" className="scroll-reveal-left" />
+                <input type="tel" placeholder="Phone Number" className="scroll-reveal-right" />
+                <select defaultValue="" className="scroll-reveal-left">
                   <option value="" disabled>Select Product</option>
                   <option value="gypsum">Gypsum Rock Lumps</option>
                   <option value="limestone">Limestone Ore</option>
@@ -714,8 +825,8 @@ const LandingPage = () => {
                   <option value="bauxite">Bauxite Ore</option>
                   <option value="other">Other</option>
                 </select>
-                <textarea placeholder="Your Message / Requirements" rows={4} />
-                <button type="submit" className="landing__btn landing__btn--primary">
+                <textarea placeholder="Your Message / Requirements" rows={4} className="scroll-reveal-right" />
+                <button type="submit" className="landing__btn landing__btn--primary scroll-reveal-left">
                   Submit Inquiry
                 </button>
               </form>
@@ -728,53 +839,61 @@ const LandingPage = () => {
       <footer className="landing__footer">
         <div className="landing__container">
           <div className="landing__footer-grid">
-            <div className="landing__footer-brand">
-              <div className="landing__logo">
+            <div className="landing__footer-brand scroll-reveal-left">
+              <div className="landing__logo scroll-reveal-left">
                 <img src="https://images.cradlevoices.com/uploads/1764428213_6639a919f8.png" alt="Raamul Logo" />
                 <div className="landing__logo-text">
                   <span className="landing__logo-name">RAAMUL</span>
                   <span className="landing__logo-sub">INTERNATIONAL LIMITED</span>
                 </div>
               </div>
-              <p className="landing__footer-desc">
+              <p className="landing__footer-desc scroll-reveal-left">
                 Kenya's leading supplier of industrial minerals. Surface mining and trading in gypsum, 
                 limestone, iron ore, and bauxite.
               </p>
-              <p className="landing__footer-quote">
+              <p className="landing__footer-quote scroll-reveal-left">
                 "We must ensure that sustainable company development is financially sustainable"
               </p>
             </div>
 
-            <div className="landing__footer-links">
-              <h4>Quick Links</h4>
+            <div className="landing__footer-links scroll-reveal">
+              <h4 className="scroll-reveal-left">Quick Links</h4>
               {['Home', 'About Us', 'Products', 'Services', 'Gallery', 'Contact'].map((link, i) => (
-                <button key={i} onClick={() => scrollToSection(link.toLowerCase().replace(' ', ''))}>
+                <button 
+                  key={i} 
+                  className={`scroll-reveal ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+                  onClick={() => scrollToSection(link.toLowerCase().replace(' ', ''))}
+                >
                   {link}
                 </button>
               ))}
             </div>
 
-            <div className="landing__footer-links">
-              <h4>Products</h4>
+            <div className="landing__footer-links scroll-reveal">
+              <h4 className="scroll-reveal-right">Products</h4>
               {['Gypsum Ore', 'Limestone Ore', 'Iron Ore', 'Bauxite Ore', 'Gypsum Powder'].map((link, i) => (
-                <button key={i} onClick={() => scrollToSection('products')}>
+                <button 
+                  key={i} 
+                  className={`scroll-reveal ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+                  onClick={() => scrollToSection('products')}
+                >
                   {link}
                 </button>
               ))}
             </div>
 
-            <div className="landing__footer-links">
-              <h4>Contact</h4>
-              <span>📍 Wuyi Plaza, Galana Road</span>
-              <span>📍 Kilimani, Nairobi</span>
-              <span>📞 +254 739 567 904</span>
-              <span>✉️ ramulramul2023@gmail.com</span>
+            <div className="landing__footer-links scroll-reveal-right">
+              <h4 className="scroll-reveal-right">Contact</h4>
+              <span className="scroll-reveal-right">📍 Wuyi Plaza, Galana Road</span>
+              <span className="scroll-reveal-right">📍 Kilimani, Nairobi</span>
+              <span className="scroll-reveal-right">📞 +254 739 567 904</span>
+              <span className="scroll-reveal-right">✉️ ramulramul2023@gmail.com</span>
             </div>
           </div>
 
           <div className="landing__footer-bottom">
-            <p>© 2024 Raamul International Limited. All rights reserved.</p>
-            <p>P.O. Box 10971 – 00100, Nairobi, Kenya</p>
+            <p className="scroll-reveal-left">© 2024 Raamul International Limited. All rights reserved.</p>
+            <p className="scroll-reveal-right">P.O. Box 10971 – 00100, Nairobi, Kenya</p>
           </div>
         </div>
       </footer>

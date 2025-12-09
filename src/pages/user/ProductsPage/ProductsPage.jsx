@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { useCart } from '../../../context/CartContext';
 import { useNotification } from '../../../context/NotificationContext';
-import { Navbar, LoadingSpinner, ProductImage, getProductImageUrl } from '../../../components/common';
+import { Navbar, Footer, LoadingSpinner, ProductImage, getProductImageUrl } from '../../../components/common';
 import productService from '../../../services/productService';
 import './ProductsPage.scss';
 
@@ -185,6 +185,7 @@ const ProductsPage = () => {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
@@ -242,13 +243,21 @@ const ProductCard = ({ product, onAddToCart }) => {
             {product.unit && <span className="product-card__unit">/{product.unit}</span>}
           </div>
           
-          <button 
-            className={`product-card__btn ${!inStock ? 'product-card__btn--disabled' : ''}`}
-            disabled={!inStock}
-            onClick={() => inStock && onAddToCart(product)}
-          >
-            {inStock ? 'Add to Cart' : 'Notify Me'}
-          </button>
+          <div className="product-card__actions">
+            <button 
+              className={`product-card__btn ${!inStock ? 'product-card__btn--disabled' : ''}`}
+              disabled={!inStock}
+              onClick={() => inStock && onAddToCart(product)}
+            >
+              {inStock ? 'Add to Cart' : 'Notify Me'}
+            </button>
+            <Link 
+              to={`/products/${product.id}`}
+              className="product-card__btn product-card__btn--secondary"
+            >
+              More
+            </Link>
+          </div>
         </div>
       </div>
     </div>

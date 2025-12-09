@@ -166,6 +166,9 @@ $topbar-height: 70px;
     flex: 1;
     margin-left: $sidebar-width;
     transition: margin-left $transition-slow;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   &--collapsed &__main {
@@ -252,7 +255,7 @@ $topbar-height: 70px;
   // Content
   &__content {
     padding: $spacing-3xl;
-    min-height: calc(100vh - $topbar-height);
+    flex: 1;
   }
 }
 

@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import { Footer } from '../../../components/common';
 import './AdminLayout.scss';
 
 const AdminLayout = ({ children }) => {
@@ -184,6 +185,9 @@ const AdminLayout = ({ children }) => {
         <main className="admin-layout__content">
           {children}
         </main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );

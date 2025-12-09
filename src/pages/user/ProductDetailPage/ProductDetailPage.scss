@@ -253,15 +253,109 @@
   }
 
   &__description {
+    margin-bottom: $spacing-2xl;
+    
     h3 {
       font-size: $font-size-lg;
       margin-bottom: $spacing-md;
+      font-weight: $font-weight-semibold;
     }
 
     p {
       color: $text-secondary;
       line-height: 1.7;
+      font-size: $font-size-base;
     }
+  }
+
+  &__details {
+    margin-bottom: $spacing-2xl;
+    padding: $spacing-xl;
+    background: rgba($accent-primary, 0.05);
+    border-radius: $radius-lg;
+    border: 1px solid rgba($accent-primary, 0.1);
+
+    h3 {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-lg;
+      font-weight: $font-weight-semibold;
+    }
+
+    h4 {
+      font-size: $font-size-base;
+      margin: $spacing-lg 0 $spacing-sm;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-lg;
+  }
+
+  &__detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__detail-label {
+    font-size: $font-size-sm;
+    color: $text-muted;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__detail-value {
+    font-size: $font-size-base;
+    color: $text-primary;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__unit {
+    font-size: $font-size-base;
+    color: $text-muted;
+    font-weight: $font-weight-normal;
+  }
+
+  &__details-body {
+    color: $text-secondary;
+    line-height: 1.7;
+    font-size: $font-size-base;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__details-empty {
+    color: $text-muted;
+    font-size: $font-size-sm;
+  }
+
+  &__list {
+    margin-top: $spacing-lg;
+
+    ul {
+      list-style: disc;
+      padding-left: $spacing-xl;
+      display: grid;
+      gap: $spacing-xs;
+    }
+
+    li {
+      color: $text-secondary;
+      line-height: 1.6;
+    }
+  }
+
+  &__attr-key {
+    font-weight: $font-weight-medium;
+    margin-right: $spacing-xs;
+    color: $text-primary;
+  }
+
+  &__attr-value {
+    color: $text-secondary;
   }
 
   &__specs {

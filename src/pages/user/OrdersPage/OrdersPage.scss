@@ -7,6 +7,8 @@
 .orders-page {
   min-height: 100vh;
   background: $bg-primary;
+  display: flex;
+  flex-direction: column;
 
   &__main {
     padding-top: $navbar-height + 20px;
@@ -375,6 +377,8 @@
     font-size: $font-size-base;
   }
 }
+
+
 
 
 

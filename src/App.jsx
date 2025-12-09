@@ -131,37 +131,37 @@ const AdminRoute = ({ children }) => {
 // ==========================================
 const AppRoutes = () => {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<LandingPage />} />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
-      
+          
       {/* Auth Routes - Redirect if logged in */}
-      <Route 
-        path="/auth" 
-        element={
-          <PublicOnlyRoute>
-            <AuthPage />
-          </PublicOnlyRoute>
-        } 
-      />
-      <Route 
-        path="/login" 
-        element={
-          <PublicOnlyRoute>
-            <AuthPage />
-          </PublicOnlyRoute>
-        } 
-      />
-      <Route 
-        path="/signup" 
-        element={
-          <PublicOnlyRoute>
-            <AuthPage />
-          </PublicOnlyRoute>
-        } 
-      />
+          <Route 
+            path="/auth" 
+            element={
+              <PublicOnlyRoute>
+                <AuthPage />
+              </PublicOnlyRoute>
+            } 
+          />
+          <Route 
+            path="/login" 
+            element={
+              <PublicOnlyRoute>
+                <AuthPage />
+              </PublicOnlyRoute>
+            } 
+          />
+          <Route 
+            path="/signup" 
+            element={
+              <PublicOnlyRoute>
+                <AuthPage />
+              </PublicOnlyRoute>
+            } 
+          />
       <Route 
         path="/forgot-password" 
         element={
@@ -184,11 +184,11 @@ const AppRoutes = () => {
       <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
 
       {/* User Routes - Regular Users Only (Admins Blocked) */}
-      <Route 
-        path="/products" 
-        element={
+          <Route 
+            path="/products" 
+            element={
           <UserOnlyRoute>
-            <ProductsPage />
+                <ProductsPage />
           </UserOnlyRoute>
         } 
       />
@@ -198,24 +198,24 @@ const AppRoutes = () => {
           <UserOnlyRoute>
             <ProductDetailPage />
           </UserOnlyRoute>
-        } 
-      />
-      <Route 
-        path="/cart" 
-        element={
+            } 
+          />
+              <Route 
+            path="/cart" 
+            element={
           <UserOnlyRoute>
-            <CartPage />
+                <CartPage />
           </UserOnlyRoute>
-        } 
-      />
-      <Route 
-        path="/orders" 
-        element={
+            } 
+          />
+          <Route 
+            path="/orders" 
+            element={
           <UserOnlyRoute>
-            <OrdersPage />
+                <OrdersPage />
           </UserOnlyRoute>
-        } 
-      />
+            } 
+          />
       <Route 
         path="/orders/:id" 
         element={
@@ -333,7 +333,7 @@ const AppRoutes = () => {
 
       {/* 404 - Not Found Page */}
       <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        </Routes>
   );
 };
 
@@ -349,7 +349,7 @@ function App() {
             <Router>
               <Toast />
               <AppRoutes />
-            </Router>
+      </Router>
           </NotificationProvider>
         </WishlistProvider>
       </CartProvider>
