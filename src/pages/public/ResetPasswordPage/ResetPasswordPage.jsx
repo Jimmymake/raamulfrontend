@@ -81,7 +81,7 @@ const ResetPasswordPage = () => {
       <div className="reset-password__container">
         {/* Logo */}
         <Link to="/" className="reset-password__logo">
-          <img src="/src/images/logo/logo.png" alt="Raamul Logo" />
+          <img src="https://images.cradlevoices.com/uploads/1764428213_6639a919f8.png" alt="Raamul Logo" />
           <div className="reset-password__logo-text">
             <span>RAAMUL</span>
             <span>INTERNATIONAL</span>

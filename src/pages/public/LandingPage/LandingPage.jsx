@@ -47,7 +47,7 @@ const products = [
     name: 'Bentonite Food Grade', 
     weight: '50KGS', 
     desc: 'A highly purified, safe natural clay used in the food and beverage industry. It removes impurities, clarifies juices and oils, binds toxins, and supports digestive health. Ideal for beverage filtration, food processing, and detox applications.', 
-    image: 'src/images/bags/19.png',
+    image: 'https://images.cradlevoices.com/uploads/1765269035_1b3d8fa0e0.png',
     badge: 'Food Grade'
   },
   { 
@@ -55,7 +55,8 @@ const products = [
     name: 'Gypsum Agri', 
     weight: '50KGS', 
     desc: 'A natural soil conditioner that improves soil structure, enhances water infiltration, reduces compaction, and supplies essential calcium and sulfur to support healthier, stronger crops. Ideal for restoring depleted or hard soils.', 
-    image: 'src/images/bags/18.png',
+    image: 'https://images.cradlevoices.com/uploads/1765269155_bed526b410.png',
+
     badge: 'Industrial'
   },
   { 
@@ -63,7 +64,7 @@ const products = [
     name: 'Lime Agri', 
     weight: '50KGS', 
     desc: 'A soil amendment used to reduce soil acidity, improve pH balance, and increase nutrient availability. It boosts soil health, enhances fertilizer efficiency, and supports stronger crop growth.',
-    image: 'src/images/bags/20.png',
+   image: 'https://images.cradlevoices.com/uploads/1765269262_dba8191786.png',
     badge: '89-93% Purity'
   },
   // { 

@@ -78,7 +78,7 @@ const VerifyEmailPage = () => {
       <div className="verify-email__container">
         {/* Logo */}
         <Link to="/" className="verify-email__logo">
-          <img src="/src/images/logo/logo.png" alt="Raamul Logo" />
+          <img src="https://images.cradlevoices.com/uploads/1764428213_6639a919f8.png" alt="Raamul Logo" />
           <div className="verify-email__logo-text">
             <span>RAAMUL</span>
             <span>INTERNATIONAL</span>

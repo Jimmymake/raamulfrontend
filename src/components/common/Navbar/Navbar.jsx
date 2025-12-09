@@ -39,7 +39,7 @@ const Navbar = ({ transparent = false }) => {
         {/* Logo */}
         <Link to="/" className="navbar__logo">
           <img 
-            src="/src/images/logo/logo.png" 
+            src="https://images.cradlevoices.com/uploads/1764428213_6639a919f8.png" 
             alt="Raamul Logo" 
             className="navbar__logo-img"
           />
