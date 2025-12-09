@@ -216,41 +216,41 @@ const services = [
 const galleryImages = [
   {
     id: 1,
-    src: 'https://images.cradlevoices.com/uploads/1765113480_c0444b6a32.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765285809_2fd0f13497.png',
     title: 'Mining Operations',
     category: 'Operations'
   },
   {
     id: 2,
-    src: 'https://images.cradlevoices.com/uploads/1765113519_afb76281c3.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765286350_adce59b928.png',
     title: 'Mineral Stockpile',
     category: 'Facilities'
   },
-  {
-    id: 3,
-    src: 'https://images.cradlevoices.com/uploads/1765113585_13af78c7bf.jpeg',
-    title: 'Product Packaging',
-    category: 'Products'
-  },
+  // {
+  //   id: 3,
+  //   src: 'https://images.cradlevoices.com/uploads/1765286350_adce59b928.png',
+  //   title: 'Product Packaging',
+  //   category: 'Products'
+  // },
   {
     id: 4,
     src: 'https://images.cradlevoices.com/uploads/1765113635_d49d51c780.jpeg',
     title: 'Surface Mining',
     category: 'Operations'
   },
-  {
-    id: 5,
-    src: 'https://images.cradlevoices.com/uploads/1765113699_1e3e8e26bc.jpeg',
-    title: 'Quality Control',
-    category: 'Operations'
-  },
+  // {
+  //   id: 5,
+  //   src: 'https://images.cradlevoices.com/uploads/1765113699_1e3e8e26bc.jpeg',
+  //   title: 'Quality Control',
+  //   category: 'Operations'
+  // },
 
-  {
-    id: 6,
-    src: 'https://images.cradlevoices.com/uploads/1765113866_3ea971359d.jpeg',
-    title: 'Transportation',
-    category: 'Logistics'
-  },
+  // {
+  //   id: 6,
+  //   src: 'https://images.cradlevoices.com/uploads/1765113866_3ea971359d.jpeg',
+  //   title: 'Transportation',
+  //   category: 'Logistics'
+  // },
 ];
 
 const LandingPage = () => {

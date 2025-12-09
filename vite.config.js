@@ -15,7 +15,7 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     cors: true,
-    allowedHosts: ['6e1d533f69eb.ngrok-free.app', 'localhost','127.0.0.1',],
+    allowedHosts: ['96eb5d1a3c37.ngrok-free.app', 'localhost','127.0.0.1',],
     proxy: {
       '/api': {
         target: 'https://vault.impalapay.com',
