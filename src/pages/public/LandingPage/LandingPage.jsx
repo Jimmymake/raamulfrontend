@@ -19,52 +19,59 @@ const stats = [
 const heroImages = [
   {
     id: 1,
-    src: 'https://images.cradlevoices.com/uploads/1765110754_fe5041952d.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765544357_604be7b147.jpg',
     alt: 'Mining Operations'
   },
   {
     id: 2,
-    src: 'https://images.cradlevoices.com/uploads/1765110842_884d8dab51.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765544418_87709c2779.jpg',
     alt: 'Mineral Stockpile'
   },
 
-    {
+  {
     id: 3,
-    src: 'https://images.cradlevoices.com/uploads/1765110928_b671921bec.jpeg',
+    src: 'https://images.cradlevoices.com/uploads/1765544447_5c5508a818.jpg',
     alt: 'Surface Mining'
   },
-    {
-    id: 4,
-    src: 'https://images.cradlevoices.com/uploads/1765110961_5ecbd44a9c.jpeg',
-    alt: 'Surface Mining'
-  },
+
 ];
 
 // Product images - upload PNG files to https://images.cradlevoices.com and update URLs here
 const products = [
-  { 
-    id: 1, 
-    name: 'Bentonite Food Grade', 
-    weight: '50KGS', 
-    desc: 'A highly purified, safe natural clay used in the food and beverage industry. It removes impurities, clarifies juices and oils, binds toxins, and supports digestive health. Ideal for beverage filtration, food processing, and detox applications.', 
-    image: 'https://images.cradlevoices.com/uploads/1765269035_1b3d8fa0e0.png',
+  {
+    id: 1,
+    name: 'Bentonite Food Grade',
+    weight: '50KGS',
+    desc: 'A highly purified, safe natural clay used in the food and beverage industry. It removes impurities, clarifies juices and oils, binds toxins, and supports digestive health. Ideal for beverage filtration, food processing, and detox applications.',
+    image: 'https://images.cradlevoices.com/uploads/1765546007_4f5ae66043.png',
+    gallery: [
+      'https://images.cradlevoices.com/uploads/1765546007_4f5ae66043.png',
+      'https://images.cradlevoices.com/uploads/1765541549_1666963c41.png',
+    ],
     badge: 'Food Grade'
   },
-  { 
-    id: 2, 
-    name: 'Gypsum Agri', 
-    weight: '50KGS', 
-    desc: 'A natural soil conditioner that improves soil structure, enhances water infiltration, reduces compaction, and supplies essential calcium and sulfur to support healthier, stronger crops. Ideal for restoring depleted or hard soils.', 
-    image: 'https://images.cradlevoices.com/uploads/1765269155_bed526b410.png',
-
+  {
+    id: 2,
+    name: 'Gypsum Agri',
+    weight: '50KGS',
+    desc: 'A natural soil conditioner that improves soil structure, enhances water infiltration, reduces compaction, and supplies essential calcium and sulfur to support healthier, stronger crops. Ideal for restoring depleted or hard soils.',
+    image: 'https://images.cradlevoices.com/uploads/1765545940_5e549ecc50.png',
+    gallery: [
+      'https://images.cradlevoices.com/uploads/1765545940_5e549ecc50.png',
+      'https://images.cradlevoices.com/uploads/1765541507_f9ebe99200.png',
+    ],
     badge: 'Industrial'
   },
-  { 
-    id: 3, 
-    name: 'Lime Agri', 
-    weight: '50KGS', 
+  {
+    id: 3,
+    name: 'Lime Agri',
+    weight: '50KGS',
     desc: 'A soil amendment used to reduce soil acidity, improve pH balance, and increase nutrient availability. It boosts soil health, enhances fertilizer efficiency, and supports stronger crop growth.',
-   image: 'https://images.cradlevoices.com/uploads/1765269262_dba8191786.png',
+    image: 'https://images.cradlevoices.com/uploads/1765545973_f03f95d1ab.png',
+    gallery: [
+      'https://images.cradlevoices.com/uploads/1765545973_f03f95d1ab.png',
+      'https://images.cradlevoices.com/uploads/1765541585_df2adf8a9c.png',
+    ],
     badge: '89-93% Purity'
   },
   // { 
@@ -190,11 +197,11 @@ const ServiceIcons = {
       <rect x="4" y="12" width="8" height="8" rx="1" fill="currentColor" opacity="0.15" />
       <rect x="4" y="12" width="8" height="8" rx="1" stroke="currentColor" />
       <path d="M6 14h4M6 16h4M6 18h4" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
-      
+
       <rect x="12" y="8" width="8" height="8" rx="1" fill="currentColor" opacity="0.2" />
       <rect x="12" y="8" width="8" height="8" rx="1" stroke="currentColor" />
       <path d="M14 10h4M14 12h4M14 14h4" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
-      
+
       {/* Arrow/flow indicator */}
       <path d="M8 10l2-2 2 2" stroke="currentColor" strokeWidth="1.5" fill="none" />
       <path d="M10 8v4" stroke="currentColor" strokeWidth="1.5" />
@@ -261,6 +268,12 @@ const LandingPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [selectedProductImages, setSelectedProductImages] = useState(() =>
+    products.reduce((acc, product) => {
+      acc[product.id] = product.image;
+      return acc;
+    }, {})
+  );
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -332,6 +345,13 @@ const LandingPage = () => {
     setMobileMenuOpen(false);
   };
 
+  const handleProductThumbSelect = (productId, imageSrc) => {
+    setSelectedProductImages((prev) => ({
+      ...prev,
+      [productId]: imageSrc,
+    }));
+  };
+
   return (
     <div className="landing">
       {/* Navigation */}
@@ -358,7 +378,7 @@ const LandingPage = () => {
           </div>
 
           <div className="landing__nav-actions scroll-reveal-right">
-            <button 
+            <button
               onClick={() => scrollToSection('products')}
               className="landing__btn landing__btn--outline"
             >
@@ -369,7 +389,7 @@ const LandingPage = () => {
             </Link>
           </div>
 
-          <button 
+          <button
             className="landing__mobile-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -397,14 +417,13 @@ const LandingPage = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section 
-        id="home" 
-        className="landing__hero"
+      {/* Hero Carousel Section */}
+      <section
+        className="landing__hero-carousel-section"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        <div 
+        <div
           className="landing__hero-carousel"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
@@ -414,8 +433,8 @@ const LandingPage = () => {
               className="landing__hero-slide"
             >
               <div className="landing__hero-bg">
-                <img 
-                  src={image.src} 
+                <img
+                  src={image.src}
                   alt={image.alt}
                   className="landing__hero-img"
                   loading={index === 0 ? "eager" : "lazy"}
@@ -424,9 +443,9 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Navigation Buttons */}
-        <button 
+        <button
           className="landing__hero-nav landing__hero-nav--prev"
           onClick={prevSlide}
           aria-label="Previous slide"
@@ -435,7 +454,7 @@ const LandingPage = () => {
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
-        <button 
+        <button
           className="landing__hero-nav landing__hero-nav--next"
           onClick={nextSlide}
           aria-label="Next slide"
@@ -459,61 +478,59 @@ const LandingPage = () => {
 
         <div className="landing__hero-overlay" />
         <div className="landing__hero-glow" />
+      </section>
 
-        <div className="landing__hero-content">
-          <div className="landing__hero-badge scroll-reveal-left">
-            <span className="landing__hero-badge-dot" />
-            <span>Kenya's Leading Mineral Supplier</span>
-          </div>
+      {/* Hero Content Section */}
+      <section id="home" className="landing__hero-content-section">
+        <div className="landing__container">
+          <div className="landing__hero-content">
+            <div className="landing__hero-badge scroll-reveal-left">
+              <span className="landing__hero-badge-dot" />
+              <span>Kenya's Leading Mineral Supplier</span>
+            </div>
 
-          <h1 className="landing__hero-title scroll-reveal-right">
-            Industrial Minerals
-            <br />
-            <span className="landing__hero-title--accent">Powering Progress</span>
-          </h1>
+            <h1 className="landing__hero-title scroll-reveal-right">
+              Industrial Minerals
+              <br />
+              <span className="landing__hero-title--accent">Powering Progress</span>
+            </h1>
 
-          <p className="landing__hero-desc scroll-reveal-left">
-          Transforming agriculture, construction, and industry with high-quality, earth-derived products built for performance and long-term impact.
-          </p>
+            <p className="landing__hero-desc scroll-reveal-left">
+              Transforming agriculture, construction, and industry with high-quality, earth-derived products built for performance and long-term impact.
+            </p>
 
-          <div className="landing__hero-actions">
-            <button 
-              onClick={() => scrollToSection('products')}
-              className="landing__btn landing__btn--primary landing__btn--large scroll-reveal-left"
-            >
-              Explore Products
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="landing__btn landing__btn--ghost landing__btn--large scroll-reveal-right"
-            >
-              Learn More
-            </button>
-          </div>
-
-          <div className="landing__hero-stats scroll-reveal">
-            {stats.map((stat, i) => (
-              <div 
-                key={i} 
-                className={`landing__hero-stat ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+            <div className="landing__hero-actions">
+              <button
+                onClick={() => scrollToSection('products')}
+                className="landing__btn landing__btn--primary landing__btn--large scroll-reveal-left"
               >
-                <span className="landing__hero-stat-value">{stat.value}</span>
-                <span className="landing__hero-stat-label">{stat.label}</span>
-              </div>
-            ))}
+                Explore Products
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+              <button
+                onClick={() => scrollToSection('about')}
+                className="landing__btn landing__btn--ghost landing__btn--large scroll-reveal-right"
+              >
+                Learn More
+              </button>
+            </div>
+
+            <div className="landing__hero-stats scroll-reveal">
+              {stats.map((stat, i) => (
+                <div
+                  key={i}
+                  className={`landing__hero-stat ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+                >
+                  <span className="landing__hero-stat-value">{stat.value}</span>
+                  <span className="landing__hero-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-{/* 
-        <div className="landing__scroll-indicator">
-          <span>Scroll to explore</span>
-          <div className="landing__scroll-mouse">
-            <div className="landing__scroll-wheel" />
-          </div>
-        </div> */}
       </section>
 
       {/* About Section */}
@@ -523,13 +540,13 @@ const LandingPage = () => {
             <div className="landing__about-content scroll-reveal-left">
               <span className="landing__section-label scroll-reveal-left">About Us</span>
               <h2 className="landing__section-title scroll-reveal-left">
-              Delivering Natural Solutions for Agriculture, Industry & Environmental Sustainability
+                Delivering Natural Solutions for Agriculture, Industry & Environmental Sustainability
               </h2>
               <p className="landing__about-text scroll-reveal-left">
                 <strong>Raamul International Limited</strong> we are committed to providing high-quality, naturally sourced industrial, agricultural, and environmental materials that support sustainable development, healthy soils, strong infrastructure, and safe consumer products.
               </p>
               <p className="landing__about-text scroll-reveal-left">
-                Our company has over 7,000 acres of proven gypsum reserves at Konza, Machakos County. 
+                Our company has over 7,000 acres of proven gypsum reserves at Konza, Machakos County.
                 The previous operator was the biggest exclusive supplier to LaFarge Bamburi for over 10 years.
               </p>
 
@@ -537,15 +554,14 @@ const LandingPage = () => {
                 <div className={`landing__about-card landing__about-card--mission scroll-reveal-left`}>
                   <h4>Our Mission</h4>
                   <p>
-                    To strengthen our commitment towards clients, society and the environment while contributing 
+                    To strengthen our commitment towards clients, society and the environment while contributing
                     to the development of industrial building materials.
                   </p>
                 </div>
                 <div className={`landing__about-card landing__about-card--vision scroll-reveal-right`}>
                   <h4>Our Vision</h4>
                   <p>
-                    To be the pioneer surface mining operation and supplier of industrial mineral materials that 
-                    transforms resources into modern, environmentally responsible products.
+                    To restore and enrich soils across Africa through natural, science-backed mineral solutions—empowering farmers, industries, and communities with sustainable products that protect the earth and nourish life.
                   </p>
                 </div>
               </div>
@@ -553,10 +569,12 @@ const LandingPage = () => {
 
 
 
+
+
             {/* <div className="landing__about-image scroll-reveal-right">
               <div className="landing__about-image-wrapper">
-                <LazyImage 
-                  src="https://images.cradlevoices.com/uploads/1764428343_b749bc8bfa.jpg" 
+                <LazyImage
+                  src="src/images/Screencast from 2025-12-08 15-40-43.mp4"
                   alt="Mineral ore"
                   aspectRatio="4/3"
                   className="landing__about-img"
@@ -568,8 +586,8 @@ const LandingPage = () => {
                     'Advanced Technology',
                     '24/7 Operations',
                   ].map((item, i) => (
-                    <div 
-                      key={i} 
+                    <div
+                      key={i}
                       className={`landing__about-feature ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
                     >
                       <div className="landing__about-feature-icon">✓</div>
@@ -595,48 +613,67 @@ const LandingPage = () => {
           </div>
 
           <div className="landing__products-grid">
-            {products.map((product, index) => (
-              <div 
-                key={product.id} 
-                className={`landing__product-card ${index % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
-              >
-                <div className="landing__product-badge">{product.badge}</div>
-                <div className="landing__product-image">
-                  <ProductImage 
-                    src={product.image} 
-                    alt={product.name}
-                    size="medium"
-                    className="landing__product-img"
-                  />
-                </div>
-                <div className="landing__product-content">
-                  <h3 className="landing__product-name">{product.name}</h3>
-                  <p className="landing__product-desc">{product.desc}</p>
-                  <div className="landing__product-meta">
-                    <span className="landing__product-weight">📦 {product.weight}</span>
+            {products.map((product, index) => {
+              const galleryImages = product.gallery?.length ? product.gallery : [product.image];
+              const activeImage = selectedProductImages[product.id] || galleryImages[0];
+
+              return (
+                <div
+                  key={product.id}
+                  className={`landing__product-card ${index % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
+                >
+                  <div className="landing__product-badge">{product.badge}</div>
+                  <div className="landing__product-image">
+                    <ProductImage
+                      src={activeImage}
+                      alt={product.name}
+                      size="medium"
+                      className="landing__product-img"
+                    />
+
+                    <div className="landing__product-thumbs">
+                      {galleryImages.slice(0, 3).map((thumbSrc, i) => (
+                        <button
+                          key={thumbSrc + i}
+                          className={`landing__product-thumb ${activeImage === thumbSrc ? 'is-active' : ''}`}
+                          onClick={() => handleProductThumbSelect(product.id, thumbSrc)}
+                          aria-label={`View ${product.name} image ${i + 1}`}
+                          type="button"
+                        >
+                          <img src={thumbSrc} alt={`${product.name} thumbnail ${i + 1}`} />
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                  <div className="landing__product-footer">
-                    <button 
-                      className="landing__btn landing__btn--primary landing__btn--small"
-                      onClick={() => navigate('/auth')}
-                    >
-                      Shop Now
-                    </button>
-                    {/* <button 
-                      className="landing__btn landing__btn--outline landing__btn--small"
-                      onClick={() => navigate(`/products/${product.id}`)}
-                    >
-                      More
-                    </button> */}
+                  <div className="landing__product-content">
+                    <h3 className="landing__product-name">{product.name}</h3>
+                    <p className="landing__product-desc">{product.desc}</p>
+                    <div className="landing__product-meta">
+                      <span className="landing__product-weight">📦 {product.weight}</span>
+                    </div>
+                    <div className="landing__product-footer">
+                      <button
+                        className="landing__btn landing__btn--primary landing__btn--small"
+                        onClick={() => navigate('/auth')}
+                      >
+                        Shop Now
+                      </button>
+                      {/* <button 
+                        className="landing__btn landing__btn--outline landing__btn--small"
+                        onClick={() => navigate(`/products/${product.id}`)}
+                      >
+                        More
+                      </button> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="landing__products-cta scroll-reveal-right">
             <p className="scroll-reveal-left">Need bulk quantities or custom specifications?</p>
-            <button 
+            <button
               onClick={() => scrollToSection('contact')}
               className="landing__btn landing__btn--outline scroll-reveal-right"
             >
@@ -659,8 +696,8 @@ const LandingPage = () => {
 
           <div className="landing__services-grid">
             {services.map((service, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className={`landing__service-card ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
               >
                 <div className="landing__service-icon">{service.icon}</div>
@@ -734,12 +771,12 @@ const LandingPage = () => {
 
       {/* Image Modal */}
       {selectedImage && (
-        <div 
+        <div
           className="landing__gallery-modal"
           onClick={() => setSelectedImage(null)}
         >
           <div className="landing__gallery-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button 
+            <button
               className="landing__gallery-modal-close"
               onClick={() => setSelectedImage(null)}
             >
@@ -770,7 +807,7 @@ const LandingPage = () => {
               <span className="landing__section-label scroll-reveal-left">Contact Us</span>
               <h2 className="landing__section-title scroll-reveal-left">Let's Discuss Your Requirements</h2>
               <p className="landing__contact-desc scroll-reveal-left">
-                Whether you need bulk mineral supplies or have questions about our products, 
+                Whether you need bulk mineral supplies or have questions about our products,
                 our team is ready to assist you.
               </p>
 
@@ -849,7 +886,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <p className="landing__footer-desc scroll-reveal-left">
-                Kenya's leading supplier of industrial minerals. Surface mining and trading in gypsum, 
+                Kenya's leading supplier of industrial minerals. Surface mining and trading in gypsum,
                 limestone, iron ore, and bauxite.
               </p>
               <p className="landing__footer-quote scroll-reveal-left">
@@ -860,8 +897,8 @@ const LandingPage = () => {
             <div className="landing__footer-links scroll-reveal">
               <h4 className="scroll-reveal-left">Quick Links</h4>
               {['Home', 'About Us', 'Products', 'Services', 'Gallery', 'Contact'].map((link, i) => (
-                <button 
-                  key={i} 
+                <button
+                  key={i}
                   className={`scroll-reveal ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
                   onClick={() => scrollToSection(link.toLowerCase().replace(' ', ''))}
                 >
@@ -873,8 +910,8 @@ const LandingPage = () => {
             <div className="landing__footer-links scroll-reveal">
               <h4 className="scroll-reveal-right">Products</h4>
               {['Gypsum Ore', 'Limestone Ore', 'Iron Ore', 'Bauxite Ore', 'Gypsum Powder'].map((link, i) => (
-                <button 
-                  key={i} 
+                <button
+                  key={i}
                   className={`scroll-reveal ${i % 2 === 0 ? 'scroll-reveal-left' : 'scroll-reveal-right'}`}
                   onClick={() => scrollToSection('products')}
                 >
