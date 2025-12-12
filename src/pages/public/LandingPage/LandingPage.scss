@@ -775,7 +775,30 @@
       color: $text-secondary;
       font-size: $font-size-base;
       line-height: 1.6;
+      margin: 0 0 $spacing-md 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
       margin: 0;
+
+      li {
+        color: $text-secondary;
+        font-size: $font-size-base;
+        line-height: 1.8;
+        margin-bottom: $spacing-sm;
+        padding-left: $spacing-md;
+        position: relative;
+
+        &::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          color: $text-primary;
+          font-weight: $font-weight-bold;
+        }
+      }
     }
 
     &--mission {

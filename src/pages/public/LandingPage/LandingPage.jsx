@@ -233,12 +233,12 @@ const galleryImages = [
     title: 'Mineral Stockpile',
     category: 'Facilities'
   },
-  // {
-  //   id: 3,
-  //   src: 'https://images.cradlevoices.com/uploads/1765286350_adce59b928.png',
-  //   title: 'Product Packaging',
-  //   category: 'Products'
-  // },
+  {
+    id: 3,
+    src: 'https://images.cradlevoices.com/uploads/1765560599_e7985f263c.jpeg',
+    title: 'Product Packaging',
+    category: 'Products'
+  },
   {
     id: 4,
     src: 'https://images.cradlevoices.com/uploads/1765113635_d49d51c780.jpeg',
@@ -252,12 +252,12 @@ const galleryImages = [
   //   category: 'Operations'
   // },
 
-  // {
-  //   id: 6,
-  //   src: 'https://images.cradlevoices.com/uploads/1765113866_3ea971359d.jpeg',
-  //   title: 'Transportation',
-  //   category: 'Logistics'
-  // },
+  {
+    id: 6,
+    src: 'https://images.cradlevoices.com/uploads/1765561873_3e475e96e5.jpg',
+    title: 'Transportation',
+    category: 'Logistics'
+  },
 ];
 
 const LandingPage = () => {
@@ -327,6 +327,26 @@ const LandingPage = () => {
       elements.forEach((el) => observer.unobserve(el));
     };
   }, []);
+
+  // Re-trigger gallery animations when category changes
+  useEffect(() => {
+    // Wait for DOM to update with filtered items
+    setTimeout(() => {
+      const galleryItems = document.querySelectorAll('.landing__gallery-item');
+      
+      // Remove visible class from all gallery items first
+      galleryItems.forEach((el) => {
+        el.classList.remove('scroll-reveal--visible');
+      });
+
+      // Re-add visible class to currently visible gallery items with animation
+      galleryItems.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('scroll-reveal--visible');
+        }, index * 100);
+      });
+    }, 50);
+  }, [selectedCategory]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -540,21 +560,20 @@ const LandingPage = () => {
             <div className="landing__about-content scroll-reveal-left">
               <span className="landing__section-label scroll-reveal-left">About Us</span>
               <h2 className="landing__section-title scroll-reveal-left">
-                Delivering Natural Solutions for Agriculture, Industry & Environmental Sustainability
+                About Raamul
               </h2>
               <p className="landing__about-text scroll-reveal-left">
-                <strong>Raamul International Limited</strong> we are committed to providing high-quality, naturally sourced industrial, agricultural, and environmental materials that support sustainable development, healthy soils, strong infrastructure, and safe consumer products.
+                <strong>Raamul International Limited</strong> is a construction, vegetation & industrial minerals mining, processing & trading company. Based in Machakos County, Kenya, with a global supply chain reach. We practice sustainable mining, reclamation & responsibly source raw materials from like-minded producers. Our operations are carbon neutral.
               </p>
               <p className="landing__about-text scroll-reveal-left">
-                Our company has over 7,000 acres of proven gypsum reserves at Konza, Machakos County.
-                The previous operator was the biggest exclusive supplier to LaFarge Bamburi for over 10 years.
+                Our passion for innovating all-natural material products gives our clients holistic pure production & improves lives.
               </p>
 
               <div className="landing__about-cards">
                 <div className={`landing__about-card landing__about-card--mission scroll-reveal-left`}>
                   <h4>Our Mission</h4>
                   <p>
-                    To strengthen our commitment towards clients, society and the environment while contributing
+                    To strengthen our commitment towards clients, society and the environment while contributing 
                     to the development of industrial building materials.
                   </p>
                 </div>
@@ -567,12 +586,8 @@ const LandingPage = () => {
               </div>
             </div>
 
-
-
-
-
-            {/* <div className="landing__about-image scroll-reveal-right">
-              <div className="landing__about-image-wrapper">
+            <div className="landing__about-image scroll-reveal-right">
+              {/* <div className="landing__about-image-wrapper">
                 <LazyImage
                   src="src/images/Screencast from 2025-12-08 15-40-43.mp4"
                   alt="Mineral ore"
@@ -595,8 +610,35 @@ const LandingPage = () => {
                     </div>
                   ))}
                 </div>
+              </div> */}
+
+              <div className="landing__about-cards">
+                <div className={`landing__about-card landing__about-card--mission scroll-reveal-left`}>
+                  <h4>Products & Minerals</h4>
+                  <p>
+                    <strong>Minerals:</strong> Gypsum, Limestone, Dolomite, Bentonite clay, Silica, Pozzolana, Kankar, Copper ore, Magnesium, Manganese, Bauxite, Silver, Cement premix, Gold, Fertilizer & soil conditioners.
+                  </p>
+                  <p>
+                    We sell pure or mix Gypsum, Lime, biochar, dolomite, bentonite & added minerals.
+                  </p>
+                  <p>
+                    <strong>Acacia weed based biochar</strong> (carbon capture) & smokeless briquettes for industrial purposes & steam energy boilers.
+                  </p>
+                </div>
+                <div className={`landing__about-card landing__about-card--vision scroll-reveal-right`}>
+                  <h4>Industries Served</h4>
+                  <ul>
+                    <li>Adhesives & Sealants</li>
+                    <li>Agricultural mineral fertilizers & soil conditioners</li>
+                    <li>Animal feeds</li>
+                    <li>Plant nutrition - our solutions help to increase yield & ensure long-term plant health</li>
+                    <li>Air & water treatments with bentonite clay & bamboo granules</li>
+                    <li>Food industry & pharma</li>
+                    <li>Food grade minerals & coloring serving the critical human industrial needs</li>
+                  </ul>
+                </div>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </section>
